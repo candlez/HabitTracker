@@ -1,18 +1,17 @@
 import { Component } from '@angular/core';
 import { NgIf, NgFor } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 
 import { CreateBarComponent } from './create-bar/create-bar.component';
 import { CreateHabitPopupComponent } from './create-habit-popup/create-habit-popup.component';
+import { EditHabitHolderComponent } from './edit-habit-holder/edit-habit-holder.component';
 
-import { DataService, Habit } from '../data.service';
-
+import { DataService } from '../data.service';
 
 
 @Component({
   selector: 'app-habit-editor',
   standalone: true,
-  imports: [CreateBarComponent, CreateHabitPopupComponent, NgIf, NgFor],
+  imports: [CreateBarComponent, CreateHabitPopupComponent, NgIf, NgFor, EditHabitHolderComponent],
   templateUrl: './habit-editor.component.html',
   styleUrl: './habit-editor.component.css'
 })
