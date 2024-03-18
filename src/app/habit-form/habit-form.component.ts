@@ -10,6 +10,7 @@ import { HabitSelectService } from './habit-select.service';
   selector: 'app-habit-form',
   standalone: true,
   imports: [SubmitButtonBarComponent, FormComponent, ButtonCounterComponent],
+  providers: [HabitSelectService],
   templateUrl: './habit-form.component.html',
   styleUrl: './habit-form.component.css'
 })

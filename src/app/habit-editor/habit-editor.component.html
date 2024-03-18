@@ -1,0 +1,17 @@
+<!-- 
+    Three Things This Should Do
+    1. delete habits (this should have some sort of "are you sure" pop up)
+    2. create habits (this should also be done via pop up)
+    3. edit habits (also done via pop up)
+
+    habits will be displayed in a horizonal bars, each bar will have an edit and delete button on them
+    there will be a bar at the bottom with a button that says "done" which will take the user back to the habit form
+    and a button that says "create new" which will allow the user to create a new habit
+-->
+<ng-template [ngIf]="createHabitPopUp">
+    <app-create-habit-popup (habitEvent)="addHabit($event)"></app-create-habit-popup>
+</ng-template>
+<ul>
+    <li *ngFor="let habit of habits">{{habit}}</li>
+</ul>
+<app-create-bar (createHabitClicked)="setCreateHabitPopUp(true)"></app-create-bar>

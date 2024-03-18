@@ -1,0 +1,25 @@
+What is the high level purpose of this program?
+ - To keep track of habits and progression towards goals
+
+What features might that entail?
+ - Daily habit tracking
+    - With a way to determine which days habits are tracked
+ - Habit completion visualization
+ - Long-term goal tracking
+    - With progress bars
+ - Ways to track metrics (like weight, time spent working on coding projects)
+
+That is all data that needs to be stored somewhere!
+ - So there will need to be a way to write and read from a database.
+
+How should the data be formated in the database?
+ - Each day gets a report card?
+ - I think just one line in the database per day, with a row for each thing being tracked
+
+Different High-level Components:
+ - A "form" for tracking habits with a submit button (should remember which have already been completed for the day)
+ - "Check-ins" for various metrics being tracked
+    - These should go away for the day after being filled-in 
+ - A place to view the historical data in a visually interesting way
+ - A place to display progress for the day
+ - A page to edit which habits and metrics are being tracked

@@ -1,0 +1,8 @@
+In Progress:
+Build Submit Button
+
+Upcoming:
+Create MySQL Database
+Connect to MySQL Database
+
+Completed:

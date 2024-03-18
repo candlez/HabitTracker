@@ -5,8 +5,6 @@ import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { HabitFormComponent } from './habit-form/habit-form.component';
 import { NavHeaderComponent } from './nav-header/nav-header.component';
 
-import { TestService } from './test.service';
-
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -17,7 +15,7 @@ import { TestService } from './test.service';
 export class AppComponent {
   title = 'HabitTracker';
 
-  constructor(testService: TestService) {
-    console.log(testService.testValue);
+  constructor() {
+
   }
 }

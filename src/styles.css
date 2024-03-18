@@ -2,3 +2,13 @@
 body {
     overflow-x: hidden;
 }
+
+.pop-up {
+    height: 500px;
+    width: 500px;
+    position: absolute;
+    left: 50%;
+    top: 50px;
+    transform: translateX(-50%);
+    background-color: blueviolet;
+}
