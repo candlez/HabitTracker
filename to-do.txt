@@ -1,8 +1,12 @@
 In Progress:
-Build Submit Button
+
+
 
 Upcoming:
-Create MySQL Database
-Connect to MySQL Database
+
+
 
 Completed:
+Create MySQL Database
+Connect to MySQL Database
+Build Submit Button

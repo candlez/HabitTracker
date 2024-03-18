@@ -9,8 +9,13 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class CreateHabitPopupComponent {
   @Output() habitEvent = new EventEmitter<string>();
+  @Output() clickedOff = new EventEmitter<boolean>();
 
   submitHabit(habit: string) {
     this.habitEvent.emit(habit);
+  }
+
+  clickOff() {
+    this.clickedOff.emit(true);
   }
 }

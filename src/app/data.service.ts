@@ -17,6 +17,14 @@ export class DataService {
   getHabits() {
     return this.http.get<Habit[]>(this.baseURL + "/habit");
   }
+
+  addHabit(habit: string) {
+    return this.http.put(this.baseURL + "/habit/" + habit, undefined);
+  }
+
+  deleteHabit(habit: string) {
+    return this.http.delete(this.baseURL + "/habit/" + habit);
+  }
   
 }
 

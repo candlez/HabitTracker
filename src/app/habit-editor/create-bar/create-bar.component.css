@@ -1,4 +1,5 @@
-div {
+#create-bar {
+    z-index: 0;
     background-color: skyblue;
     position: fixed;
     bottom: 0px;
