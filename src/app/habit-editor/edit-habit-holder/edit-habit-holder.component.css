@@ -22,3 +22,9 @@
     margin: auto;
     margin-right: 10px;
 }
+
+.habit-edit-button {
+    float: inline-end;
+    margin: auto;
+    margin-right: 10px;
+}

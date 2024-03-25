@@ -1,5 +1,6 @@
 <div class="habit-text-box">
     <p class="habit-text">{{habit}}</p>
-    <button class="habit-delete-button" (click)="clicked.emit()">Delete</button>
+    <button class="habit-delete-button" (click)="deleteClicked.emit()">Delete</button>
+    <button class="habit-edit-button" (click)="editClicked.emit(habit)">Edit</button>
 </div>
 

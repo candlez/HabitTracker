@@ -9,6 +9,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class EditHabitHolderComponent {
   @Input() habit!: string;
-  @Output() clicked = new EventEmitter<boolean>();
+  @Output() deleteClicked = new EventEmitter<boolean>();
+  @Output() editClicked = new EventEmitter<string>();
   
+
 }

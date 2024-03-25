@@ -22,6 +22,11 @@ export class DataService {
     return this.http.put(this.baseURL + "/habit/" + habit, undefined);
   }
 
+  editHabit(oldHabit: string, newHabit: string) {
+    console.log(oldHabit, newHabit);
+    return this.http.put(this.baseURL + "/habit/" + oldHabit + "/" + newHabit, undefined);
+  }
+
   deleteHabit(habit: string) {
     return this.http.delete(this.baseURL + "/habit/" + habit);
   }

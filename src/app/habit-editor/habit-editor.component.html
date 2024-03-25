@@ -11,9 +11,14 @@
 <app-create-habit-popup 
     *ngIf="createHabitPopUp" (habitEvent)="addHabit($event)" (clickedOff)="exitPopUps()"
 ></app-create-habit-popup>
+<app-edit-habit-popup
+    *ngIf="editHabitPopUp" (habitEvent)="editHabit(selectedHabit, $event)" (clickedOff)="exitPopUps()"
+></app-edit-habit-popup>
 <div id="edit-habit-holder-box">
-    <app-edit-habit-holder *ngFor="let habit of habits" [habit]="habit" (clicked)="deleteHabit(habit)">
-    </app-edit-habit-holder>
+    <app-edit-habit-holder 
+        *ngFor="let habit of habits | slice:1" [habit]="habit" (deleteClicked)="deleteHabit(habit)"
+        (editClicked)="setEditHabitPopUp(true); setSelectedHabit(habit)"
+    ></app-edit-habit-holder>
 </div>
 <app-create-bar (createHabitClicked)="setCreateHabitPopUp(true)"></app-create-bar>
 
