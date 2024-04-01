@@ -1,8 +1,21 @@
+<!-- 
+    things this should do:
+    1. display habits
+        a. each habit should have a check box
+        b. habits that were previously completed should be "grayed out" in some way
+           to indicate that they are complete
+    2. submit button to sumbit completed habits
+        a. a pop up should come up and congratulate the user
+        b. there should be a button on the pop-up that takes the user back to the
+           progress/home screen
+-->
+
 <div id="wrapper">
     <div id="body">
-        <app-button-counter></app-button-counter>
-        <app-form></app-form>
-        <app-button-counter></app-button-counter>
+        <app-form-habit-holder 
+            *ngFor="let habit of habits" [habit]="habit" (checked)="habit.value = $event; test();" 
+            (undone)="this.undoPrevious(habit.name); habit.originalValue = 0; habit.value = 0;"
+        ></app-form-habit-holder>
     </div>
-    <app-submit-button-bar></app-submit-button-bar>
+    <app-submit-button-bar (submit)="this.submitChanges()"></app-submit-button-bar>
 </div>

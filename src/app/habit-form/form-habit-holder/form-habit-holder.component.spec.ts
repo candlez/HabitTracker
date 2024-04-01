@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormComponent } from './form.component';
+import { FormHabitHolderComponent } from './form-habit-holder.component';
 
-describe('FormComponent', () => {
-  let component: FormComponent;
-  let fixture: ComponentFixture<FormComponent>;
+describe('FormHabitHolderComponent', () => {
+  let component: FormHabitHolderComponent;
+  let fixture: ComponentFixture<FormHabitHolderComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormComponent]
+      imports: [FormHabitHolderComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(FormComponent);
+    fixture = TestBed.createComponent(FormHabitHolderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -15,7 +15,7 @@ export class DataService {
   }
 
   getHabits() {
-    return this.http.get<Habit[]>(this.baseURL + "/habit");
+    return this.http.get<HabitColumn[]>(this.baseURL + "/habit");
   }
 
   addHabit(habit: string) {
@@ -23,7 +23,6 @@ export class DataService {
   }
 
   editHabit(oldHabit: string, newHabit: string) {
-    console.log(oldHabit, newHabit);
     return this.http.put(this.baseURL + "/habit/" + oldHabit + "/" + newHabit, undefined);
   }
 
@@ -31,8 +30,30 @@ export class DataService {
     return this.http.delete(this.baseURL + "/habit/" + habit);
   }
   
+  getDate(date: string) {
+    return this.http.get<Object[]>(this.baseURL + "/date/" + date);
+  }
+
+  // this should now be handled by the SQL server
+  initializeDate(date: string) {
+    return this.http.put(this.baseURL + "/date/" + date, undefined);
+  }
+
+  markAsComplete(habit: string, date: string) {
+    return this.http.put(this.baseURL + "/date/" + date + "/" + habit + "/TRUE", undefined);
+  }
+
+  markAsNotComplete(habit: string, date: string) {
+    return this.http.put(this.baseURL + "/date/" + date + "/" + habit + "/FALSE", undefined);
+  }
+}
+
+export interface HabitColumn {
+  COLUMN_NAME: string;
 }
 
 export interface Habit {
-  COLUMN_NAME: string;
+  name: string;
+  value: number;
+  originalValue: number;
 }

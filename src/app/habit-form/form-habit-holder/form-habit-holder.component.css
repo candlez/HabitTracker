@@ -18,13 +18,13 @@
     font-size: larger;
 }
 
-.habit-delete-button {
+.toggle-habit-check-box {
     float: inline-end;
     margin: auto;
     margin-right: 10px;
 }
 
-.habit-edit-button {
+.undo-habit-button {
     float: inline-end;
     margin: auto;
     margin-right: 10px;
