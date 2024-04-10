@@ -14,41 +14,32 @@ export class DataService {
     this.http = http;
   }
 
-  getHabits() {
-    return this.http.get<HabitColumn[]>(this.baseURL + "/habit");
+  getColumns(table: string) {
+    return this.http.get<Column[]>(`${this.baseURL}/${table}`);
   }
 
-  addHabit(habit: string) {
-    return this.http.put(this.baseURL + "/habit/" + habit, undefined);
+  addColumn(table: string, column: string) {
+    return this.http.put(`${this.baseURL}/${table}/${column}`, undefined);
+  } 
+
+  editColumn(table: string, oldColumn: string, newColumn: string) {
+    return this.http.put(`${this.baseURL}/${table}/${oldColumn}/${newColumn}`, undefined);
   }
 
-  editHabit(oldHabit: string, newHabit: string) {
-    return this.http.put(this.baseURL + "/habit/" + oldHabit + "/" + newHabit, undefined);
-  }
-
-  deleteHabit(habit: string) {
-    return this.http.delete(this.baseURL + "/habit/" + habit);
+  deleteColumn(table: string, column: string) {
+    return this.http.delete(`${this.baseURL}/${table}/${column}`);
   }
   
-  getDate(date: string) {
-    return this.http.get<Object[]>(this.baseURL + "/date/" + date);
+  getDate(table: string, date: string) {
+    return this.http.get<Object[]>(`${this.baseURL}/date/${table}/${date}`);
   }
 
-  // this should now be handled by the SQL server
-  initializeDate(date: string) {
-    return this.http.put(this.baseURL + "/date/" + date, undefined);
-  }
-
-  markAsComplete(habit: string, date: string) {
-    return this.http.put(this.baseURL + "/date/" + date + "/" + habit + "/TRUE", undefined);
-  }
-
-  markAsNotComplete(habit: string, date: string) {
-    return this.http.put(this.baseURL + "/date/" + date + "/" + habit + "/FALSE", undefined);
+  markEntry(table: string, date: string, column: string, value: any) {
+    return this.http.put(`${this.baseURL}/date/${table}/${date}/${column}/${value}`, undefined);
   }
 }
 
-export interface HabitColumn {
+export interface Column {
   COLUMN_NAME: string;
 }
 
@@ -56,4 +47,9 @@ export interface Habit {
   name: string;
   value: number;
   originalValue: number;
+}
+
+export interface Metric {
+  name: string;
+  value: number;
 }

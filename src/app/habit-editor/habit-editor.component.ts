@@ -32,7 +32,7 @@ export class HabitEditorComponent {
     this.editHabitPopUp = false;
 
     this.habits = [];
-    dataService.getHabits().subscribe(
+    dataService.getColumns("habit").subscribe(
       data => this.habits = data.map((value) => {return value.COLUMN_NAME})
     );
 
@@ -61,7 +61,7 @@ export class HabitEditorComponent {
     // there needs to be some checks for this
     this.createHabitPopUp = false;
     // do http
-    this.data.addHabit(newHabit).subscribe(); // should do something with this once the response is better
+    this.data.addColumn("habit", newHabit).subscribe(); // should do something with this once the response is better
     this.habits.push(newHabit); // this should only happen if the http is sucessful
   }
 
@@ -69,13 +69,13 @@ export class HabitEditorComponent {
     // do something
     // the back end needs to be updated to support this
     this.editHabitPopUp = false;
-    this.data.editHabit(oldHabit, newHabit).subscribe(); // should do something with this
+    this.data.editColumn("habit", oldHabit, newHabit).subscribe(); // should do something with this
     this.habits[this.habits.indexOf(oldHabit)] = newHabit; // changes to local should be conditional on successful request
   }
 
   deleteHabit(oldHabit: string) {
     // the http request should happen first to make sure it works
     this.habits.splice(this.habits.indexOf(oldHabit), 1);
-    this.data.deleteHabit(oldHabit).subscribe();
+    this.data.deleteColumn("habit", oldHabit).subscribe();
   }
 }

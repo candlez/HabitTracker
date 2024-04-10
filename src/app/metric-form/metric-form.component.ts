@@ -1,0 +1,44 @@
+import { Component } from '@angular/core';
+import { NgFor } from '@angular/common';
+
+
+import { DataService, Metric } from '../data.service';
+
+
+@Component({
+  selector: 'app-metric-form',
+  standalone: true,
+  imports: [NgFor],
+  templateUrl: './metric-form.component.html',
+  styleUrl: './metric-form.component.css'
+})
+export class MetricFormComponent {
+  date: string;
+  data: DataService;
+  metrics: Metric[]
+
+  constructor(data: DataService) {
+    var date = new Date();
+    var local = new Date(date.getTime() - (date.getTimezoneOffset() * 60000));
+    this.date = local.toISOString().split('T')[0];
+    this.data = data;
+
+    this.metrics = [];
+    this.data.getDate("metric", this.date).subscribe(
+      data => this.metrics = this.parseData(data)
+    );
+  }
+
+  parseData(data: Object[]) {
+    var arr: Metric[] = [];
+    Object.entries(data[0]).forEach((entry, index) => {
+      if (index != 0) {
+        arr.push({
+          name: entry[0],
+          value: entry[1],
+        });
+      }
+    });
+    return arr;
+  }
+}

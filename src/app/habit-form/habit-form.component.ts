@@ -24,16 +24,17 @@ export class HabitFormComponent {
 
   constructor(data: DataService) {
     var date = new Date();
-    this.date = date.toISOString().split('T')[0]
+    var local = new Date(date.getTime() - (date.getTimezoneOffset() * 60000));
+    this.date = local.toISOString().split('T')[0];
     this.data = data;
     
     this.habits = [];
-    this.data.getDate(this.date).subscribe(
-      data => this.habits = this.parseDateData(data)
+    this.data.getDate("habit", this.date).subscribe(
+      data => this.habits = this.parseData(data)
     );
   }
 
-  parseDateData(data: Object[]) {
+  parseData(data: Object[]) {
     var arr: Habit[] = [];
     Object.entries(data[0]).forEach((entry, index) => {
       if (index != 0) {
@@ -41,19 +42,17 @@ export class HabitFormComponent {
           name: entry[0],
           value: entry[1],
           originalValue: entry[1]
-        })
+        });
       }
     });
     return arr;
   }
 
   submitChanges() {
-    this.test();
     this.habits.forEach((habit) => {
       if (habit.value == 1) {
-        // do http
-        // "this" keyword be correct in this context?
-        this.data.markAsComplete(habit.name, this.date).subscribe();
+        // this.data.markHabitComplete(habit.name, this.date).subscribe();
+        this.data.markEntry("habit", this.date, habit.name, "TRUE").subscribe();
         habit.originalValue = 1;
         habit.value = 0;
       }
@@ -61,11 +60,7 @@ export class HabitFormComponent {
   }
 
   undoPrevious(habit: string) {
-    this.data.markAsNotComplete(habit, this.date).subscribe();
-  }
-
-  test() {
-    console.log(this.habits);
+    this.data.markEntry("habit", this.date, habit, "FALSE").subscribe();
   }
 }
 

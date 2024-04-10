@@ -1,12 +1,14 @@
 In Progress:
-
+Make Home Page
 
 
 Upcoming:
-
+Make Metrics Page
 
 
 Completed:
+Make Complete Habits Page
+Make Edit Habits Page
 Create MySQL Database
 Connect to MySQL Database
 Build Submit Button
