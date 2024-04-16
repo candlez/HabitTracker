@@ -37,6 +37,14 @@ export class DataService {
   markEntry(table: string, date: string, column: string, value: any) {
     return this.http.put(`${this.baseURL}/date/${table}/${date}/${column}/${value}`, undefined);
   }
+
+  enableColumn(table: string, column: string) {
+    return this.http.put(`${this.baseURL}/${table}/enable/${column}`, undefined);
+  }
+
+  disableColumn(table: string, column: string) {
+    return this.http.put(`${this.baseURL}/${table}/disable/${column}`, undefined);
+  }
 }
 
 export interface Column {

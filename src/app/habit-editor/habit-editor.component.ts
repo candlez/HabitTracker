@@ -22,6 +22,7 @@ export class HabitEditorComponent {
   createHabitPopUp: boolean;
   editHabitPopUp: boolean;
   data: DataService;
+  date: string;
 
   habits: string[];
   selectedHabit: string;
@@ -30,6 +31,10 @@ export class HabitEditorComponent {
     this.data = dataService;
     this.createHabitPopUp = false;
     this.editHabitPopUp = false;
+
+    var date = new Date();
+    var local = new Date(date.getTime() - (date.getTimezoneOffset() * 60000));
+    this.date = local.toISOString().split('T')[0];
 
     this.habits = [];
     dataService.getColumns("habit").subscribe(
@@ -62,6 +67,8 @@ export class HabitEditorComponent {
     this.createHabitPopUp = false;
     // do http
     this.data.addColumn("habit", newHabit).subscribe(); // should do something with this once the response is better
+    this.data.enableColumn("habit", newHabit).subscribe();
+    this.data.markEntry("habit", this.date, newHabit, "FALSE");
     this.habits.push(newHabit); // this should only happen if the http is sucessful
   }
 

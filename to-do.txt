@@ -1,5 +1,5 @@
 In Progress:
-Make Metrics Page
+Make Metrics Pages
 
 
 Upcoming:
@@ -7,8 +7,8 @@ Make Dashboard
 Make "About" Page
 Style Dashboard
 Style About Page
-Style Metric Page
-Style Habit Page
+Style Metric Pages
+Style Habit Pages
 Dockerize
 
 
