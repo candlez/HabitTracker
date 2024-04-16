@@ -4,6 +4,12 @@ Make Metrics Page
 
 Upcoming:
 Make Dashboard
+Make "About" Page
+Style Dashboard
+Style About Page
+Style Metric Page
+Style Habit Page
+Dockerize
 
 
 Completed:

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgFor } from '@angular/common';
 
 import { FormMetricHolderComponent } from './form-metric-holder/form-metric-holder.component';
+import { MetricButtonBarComponent } from './metric-button-bar/metric-button-bar.component';
 
 import { DataService, Metric } from '../data.service';
 
@@ -10,7 +11,7 @@ import { DataService, Metric } from '../data.service';
 @Component({
   selector: 'app-metric-form',
   standalone: true,
-  imports: [NgFor, FormMetricHolderComponent],
+  imports: [NgFor, FormMetricHolderComponent, MetricButtonBarComponent],
   templateUrl: './metric-form.component.html',
   styleUrl: './metric-form.component.css'
 })
@@ -48,6 +49,6 @@ export class MetricFormComponent {
     // make http call
     this.data.markEntry("metric", this.date, metric.name, value).subscribe();
     // update local data
-
+    // this is already done?
   }
 }

@@ -1,0 +1,8 @@
+#metric-form-button-bar {
+    background-color: skyblue;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100px;
+}
