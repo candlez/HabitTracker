@@ -1,9 +1,9 @@
 In Progress:
-Make Home Page
+Make Metrics Page
 
 
 Upcoming:
-Make Metrics Page
+Make Dashboard
 
 
 Completed:

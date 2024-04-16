@@ -1,0 +1,10 @@
+.form-wrapper {
+    position: absolute;
+    min-height: 100%;
+    width: 100%;
+    left: 0%;
+}
+
+.form-body {
+    padding-bottom: 100px;
+}

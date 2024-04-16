@@ -10,8 +10,8 @@
            progress/home screen
 -->
 
-<div id="wrapper">
-    <div id="body">
+<div class="form-wrapper">
+    <div class="form-body">
         <app-form-habit-holder 
             *ngFor="let habit of habits" [habit]="habit" (checked)="habit.value = $event" 
             (undone)="this.undoPrevious(habit.name); habit.originalValue = 0; habit.value = 0;"

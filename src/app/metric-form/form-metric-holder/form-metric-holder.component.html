@@ -1,0 +1,17 @@
+<!--
+    Needs The Following
+    1. label of the metric
+    2. either a input box or the value of the metric
+    3. either a submit buttin or an edit button
+
+-->
+
+<div class="metric-text-box">
+    <p class="metric-text">{{metric.name}}:</p>
+    <input type="text" class="metric-input left-side" #metricInput>
+    <br>
+    <p class="metric-text">{{metric.value}}</p>
+    <button class="metric-submit left-side" (click)="this.handleSubmit(metricInput.value)">Submit</button>
+    <br>
+    <p class="metric-text error-text" *ngIf="this.error">{{this.error}}</p>
+</div>

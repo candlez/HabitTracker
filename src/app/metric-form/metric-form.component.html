@@ -1,1 +1,9 @@
-<p *ngFor="let metric of metrics">{{metric.name}}</p> 
+
+
+<div class="form-wrapper">
+    <div class="form-body">
+        <app-form-metric-holder 
+            *ngFor="let metric of metrics" [metric]="metric" (submit)="this.submitChange($event, metric)"
+        ></app-form-metric-holder>
+    </div>
+</div>

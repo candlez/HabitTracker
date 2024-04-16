@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
 import { NgFor } from '@angular/common';
 
+import { FormMetricHolderComponent } from './form-metric-holder/form-metric-holder.component';
 
 import { DataService, Metric } from '../data.service';
+
 
 
 @Component({
   selector: 'app-metric-form',
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, FormMetricHolderComponent],
   templateUrl: './metric-form.component.html',
   styleUrl: './metric-form.component.css'
 })
@@ -40,5 +42,12 @@ export class MetricFormComponent {
       }
     });
     return arr;
+  }
+
+  submitChange(value: number, metric: Metric) {
+    // make http call
+    this.data.markEntry("metric", this.date, metric.name, value).subscribe();
+    // update local data
+
   }
 }
