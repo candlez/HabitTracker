@@ -68,7 +68,7 @@ export class HabitEditorComponent {
     // do http
     this.data.addColumn("habit", newHabit).subscribe(); // should do something with this once the response is better
     this.data.enableColumn("habit", newHabit).subscribe();
-    this.data.markEntry("habit", this.date, newHabit, "FALSE");
+    this.data.markEntry("habit", this.date, newHabit, "FALSE").subscribe();
     this.habits.push(newHabit); // this should only happen if the http is sucessful
   }
 
