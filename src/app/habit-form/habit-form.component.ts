@@ -35,7 +35,7 @@ export class HabitFormComponent {
   parseData(data: Object[]) {
     var arr: Habit[] = [];
     Object.entries(data[0]).forEach((entry, index) => {
-      if (index != 0) {
+      if (index != 0 && entry[1] != null) {
         arr.push({
           name: entry[0],
           value: entry[1],
