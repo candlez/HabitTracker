@@ -14,6 +14,12 @@ export class DataService {
     this.http = http;
   }
 
+  getDateString() {
+    var date = new Date();
+    var local = new Date(date.getTime() - (date.getTimezoneOffset() * 60000));
+    return local.toISOString().split('T')[0];
+  }
+
   getColumns(table: string) {
     return this.http.get<Column[]>(`${this.baseURL}/${table}`);
   }

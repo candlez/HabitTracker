@@ -23,10 +23,8 @@ export class HabitFormComponent {
 
 
   constructor(data: DataService) {
-    var date = new Date();
-    var local = new Date(date.getTime() - (date.getTimezoneOffset() * 60000));
-    this.date = local.toISOString().split('T')[0];
     this.data = data;
+    this.date = this.data.getDateString();
     
     this.habits = [];
     this.data.getDate("habit", this.date).subscribe(

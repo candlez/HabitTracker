@@ -21,10 +21,8 @@ export class MetricFormComponent {
   metrics: Metric[]
 
   constructor(data: DataService) {
-    var date = new Date();
-    var local = new Date(date.getTime() - (date.getTimezoneOffset() * 60000));
-    this.date = local.toISOString().split('T')[0];
     this.data = data;
+    this.date = this.data.getDateString();
 
     this.metrics = [];
     this.data.getDate("metric", this.date).subscribe(
