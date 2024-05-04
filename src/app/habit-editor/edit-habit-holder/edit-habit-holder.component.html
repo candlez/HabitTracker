@@ -1,6 +1,9 @@
-<div class="habit-text-box">
-    <p class="habit-text">{{habit}}</p>
+<div class="habit-text-box" [ngClass]="{'grey-out': habit.COLUMN_DEFAULT == null}">
+    <p class="habit-text">{{habit.COLUMN_NAME}}</p>
     <button class="habit-delete-button" (click)="deleteClicked.emit()">Delete</button>
-    <button class="habit-edit-button" (click)="editClicked.emit(habit)">Edit</button>
+    <button class="habit-toggle-button" (click)="toggleClicked.emit()">
+        {{habit.COLUMN_DEFAULT == null ? "Enable" : "Disable"}}
+    </button>
+    <button class="habit-edit-button" (click)="editClicked.emit()">Edit</button>
 </div>
 

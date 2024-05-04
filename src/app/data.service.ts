@@ -55,6 +55,7 @@ export class DataService {
 
 export interface Column {
   COLUMN_NAME: string;
+  COLUMN_DEFAULT: string | null;
 }
 
 export interface Habit {
