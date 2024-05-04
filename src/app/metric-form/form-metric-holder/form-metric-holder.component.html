@@ -8,10 +8,10 @@
 
 <div class="metric-text-box">
     <p class="metric-text">{{metric.name}}:</p>
-    <input type="text" class="metric-input left-side" #metricInput>
+    <input type="text" class="metric-input right-side" #metricInput>
     <br>
     <p class="metric-text">{{metric.value}}</p>
-    <button class="metric-submit left-side" (click)="this.handleSubmit(metricInput.value)">Submit</button>
+    <button class="metric-submit right-side" (click)="this.handleSubmit(metricInput.value)">Submit</button>
     <br>
     <p class="metric-text error-text" *ngIf="this.error">{{this.error}}</p>
 </div>
