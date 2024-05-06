@@ -1,0 +1,5 @@
+<div id="create-metric-background" (click)="clickedOff.emit()"></div>
+<div id="create-metric-popup" class="pop-up">
+    <input type="text" #newMetric>
+    <button id="create-metric-popup-submit-button" (click)="metricCreated.emit(newMetric.value)">Submit</button>
+</div>

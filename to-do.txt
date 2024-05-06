@@ -5,11 +5,14 @@ Make Metrics Pages
 Upcoming:
 Make Dashboard
 Make "About" Page
+Finish README
 Style Dashboard
 Style About Page
 Style Metric Pages
 Style Habit Pages
 Dockerize
+Kubernetes-ize
+Deploy
 
 
 Completed:
