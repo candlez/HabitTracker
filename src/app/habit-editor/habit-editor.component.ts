@@ -73,8 +73,6 @@ export class HabitEditorComponent {
   }
 
   editHabit(oldHabit: Column, newHabit: string) {
-    // do something
-    // the back end needs to be updated to support this
     this.editHabitPopUp = false;
     this.data.editColumn("habit", oldHabit.COLUMN_NAME, newHabit).subscribe(); // should do something with this
     this.habits[this.habits.indexOf(oldHabit)].COLUMN_NAME = newHabit; // changes to local should be conditional on successful request
@@ -83,9 +81,11 @@ export class HabitEditorComponent {
   toggleHabit(habit: Column) {
     if (habit.COLUMN_DEFAULT == null) {
       this.data.enableColumn("habit", habit.COLUMN_NAME).subscribe();
+      this.data.markEntry("habit", this.date, habit.COLUMN_NAME, "0").subscribe();
       habit.COLUMN_DEFAULT = "0";
     } else {
       this.data.disableColumn("habit", habit.COLUMN_NAME).subscribe();
+      this.data.markEntry("habit", this.date, habit.COLUMN_NAME, "NULL").subscribe();
       habit.COLUMN_DEFAULT = null;
     }
   }

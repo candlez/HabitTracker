@@ -61,9 +61,11 @@ export class MetricEditorComponent {
   toggleMetric(metric: Column) {
     if (metric.COLUMN_DEFAULT == "0") {
       this.data.disableColumn("metric", metric.COLUMN_NAME).subscribe();
+      this.data.markEntry("metric", this.date, metric.COLUMN_NAME, "-1").subscribe();
       metric.COLUMN_DEFAULT = "-1";
     } else {
       this.data.enableColumn("metric", metric.COLUMN_NAME).subscribe();
+      this.data.markEntry("metric", this.date, metric.COLUMN_NAME, "0").subscribe();
       metric.COLUMN_DEFAULT = "0";
     }
   }
