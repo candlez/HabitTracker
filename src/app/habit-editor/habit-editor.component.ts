@@ -82,8 +82,10 @@ export class HabitEditorComponent {
 
   toggleHabit(habit: Column) {
     if (habit.COLUMN_DEFAULT == null) {
+      this.data.enableColumn("habit", habit.COLUMN_NAME).subscribe();
       habit.COLUMN_DEFAULT = "0";
     } else {
+      this.data.disableColumn("habit", habit.COLUMN_NAME).subscribe();
       habit.COLUMN_DEFAULT = null;
     }
   }
