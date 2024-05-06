@@ -16,7 +16,7 @@
 ></app-edit-habit-popup>
 <div id="edit-habit-holder-box">
     <app-edit-habit-holder 
-        *ngFor="let habit of habits | slice:1" [habit]="habit" (deleteClicked)="deleteHabit(habit)"
+        *ngFor="let habit of habits" [habit]="habit" (deleteClicked)="deleteHabit(habit)"
         (editClicked)="setEditHabitPopUp(true); setSelectedHabit(habit)"
         (toggleClicked)="toggleHabit(habit)"
     ></app-edit-habit-holder>

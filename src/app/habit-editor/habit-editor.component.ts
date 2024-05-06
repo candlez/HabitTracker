@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NgIf, NgFor, SlicePipe } from '@angular/common';
+import { NgIf, NgFor } from '@angular/common';
 
 import { CreateBarComponent } from './create-bar/create-bar.component';
 import { CreateHabitPopupComponent } from './create-habit-popup/create-habit-popup.component';
@@ -14,7 +14,7 @@ import { DataService, Column } from '../data.service';
   selector: 'app-habit-editor',
   standalone: true,
   imports: [CreateBarComponent, CreateHabitPopupComponent, NgIf, NgFor, EditHabitHolderComponent,
-  EditHabitPopupComponent, SlicePipe],
+  EditHabitPopupComponent],
   templateUrl: './habit-editor.component.html',
   styleUrl: './habit-editor.component.css'
 })
