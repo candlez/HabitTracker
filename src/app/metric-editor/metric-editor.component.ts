@@ -30,7 +30,7 @@ export class MetricEditorComponent {
 
   constructor(data: DataService) {
     this.data = data;
-    this.date = this.data.getDateString();
+    this.date = this.data.getDateString(new Date());
     this.metrics = [];
     this.data.getColumns("metric").subscribe(
       data => this.metrics = data

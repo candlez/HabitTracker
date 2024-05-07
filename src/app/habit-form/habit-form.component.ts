@@ -24,7 +24,7 @@ export class HabitFormComponent {
 
   constructor(data: DataService) {
     this.data = data;
-    this.date = this.data.getDateString();
+    this.date = this.data.getDateString(new Date());
     
     this.habits = [];
     this.data.getDate("habit", this.date).subscribe(

@@ -14,8 +14,7 @@ export class DataService {
     this.http = http;
   }
 
-  getDateString() {
-    var date = new Date();
+  getDateString(date: Date) {
     var local = new Date(date.getTime() - (date.getTimezoneOffset() * 60000));
     return local.toISOString().split('T')[0];
   }

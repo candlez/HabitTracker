@@ -32,7 +32,7 @@ export class HabitEditorComponent {
     this.createHabitPopUp = false;
     this.editHabitPopUp = false;
 
-    this.date = this.data.getDateString();
+    this.date = this.data.getDateString(new Date());
 
     this.habits = [];
     dataService.getColumns("habit").subscribe(

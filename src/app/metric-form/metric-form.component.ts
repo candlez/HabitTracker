@@ -22,7 +22,7 @@ export class MetricFormComponent {
 
   constructor(data: DataService) {
     this.data = data;
-    this.date = this.data.getDateString();
+    this.date = this.data.getDateString(new Date());
 
     this.metrics = [];
     this.data.getDate("metric", this.date).subscribe(
