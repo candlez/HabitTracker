@@ -1,6 +1,6 @@
 
-<div class="habit-pie-chart-holder">
-    <!--<canvas id="pie-chart-canvas">{{chart}}</canvas>-->
+<div class="habit-pie-chart-holder" [ngClass]="{'selected': selected}">
+    <p id="habit-pie-chart-title">{{title}}</p>
     <canvas 
         id="habit-pie-chart" *ngIf="isBrowser" baseChart 
         [options]="config.options" [datasets]="config.data.datasets" [type]="'doughnut'"

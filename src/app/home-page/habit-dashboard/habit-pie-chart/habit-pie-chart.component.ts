@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Inject, PLATFORM_ID } from "@angular/core";
+import { NgIf, isPlatformBrowser, NgClass } from "@angular/common";
 
 
 import { DataService } from '../../../data.service';
@@ -6,13 +8,13 @@ import { DataService } from '../../../data.service';
 import { BaseChartDirective } from 'ng2-charts';
 import { Chart } from 'chart.js/auto';
 
-import { Inject, PLATFORM_ID } from "@angular/core";
-import { NgIf, isPlatformBrowser } from "@angular/common";
+
+
 
 @Component({
   selector: 'app-habit-pie-chart',
   standalone: true,
-  imports: [BaseChartDirective, NgIf],
+  imports: [BaseChartDirective, NgIf, NgClass],
   templateUrl: './habit-pie-chart.component.html',
   styleUrl: './habit-pie-chart.component.css'
 })
@@ -32,13 +34,16 @@ export class HabitPieChartComponent implements OnInit {
       ]
     },
     options: {
-      radius: 100
+      radius: 60
     }
-  }
-
+  };
 
   @Input() isFuture!: boolean;
   @Input() date!: string;
+  @Input() title!: string;
+  @Input() selected!: boolean;
+
+  @ViewChild(BaseChartDirective) chart!: BaseChartDirective;
 
   constructor(data: DataService, @Inject(PLATFORM_ID) private platformId: Object) {
     this.data = data;
@@ -48,8 +53,13 @@ export class HabitPieChartComponent implements OnInit {
     this.isBrowser = isPlatformBrowser(this.platformId);
 
     this.data.getDate("habit", this.date).subscribe(
-      data => {this.config.data.datasets[0].data = this.parseData(data)}
-    )
+      data => {
+        this.config.data.datasets[0].data = this.parseData(data);
+        if (this.chart) {
+          this.chart.ngOnChanges({});
+        }
+      }
+    );
   }
 
   parseData(data: Object[]) {

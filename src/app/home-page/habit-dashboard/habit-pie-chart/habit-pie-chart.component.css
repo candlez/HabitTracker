@@ -1,0 +1,13 @@
+#habit-pie-chart {
+    margin-top: 0%;
+}
+
+#habit-pie-chart-title {
+    text-align: center;
+    font-size: large;
+    margin-bottom: 0%;
+}
+
+.selected {
+    background-color: darkseagreen;
+}
