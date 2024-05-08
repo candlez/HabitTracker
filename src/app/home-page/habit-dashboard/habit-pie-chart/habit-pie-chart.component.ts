@@ -55,11 +55,11 @@ export class HabitPieChartComponent implements OnInit {
   parseData(data: Object[]) {
     const arr = [0, 0];
     Object.entries(data[0]).forEach((habit) => {
-      if (habit[0] != "date") {
-        if (habit[1] == 1) {
-          arr[0]++;
-        } else if (habit[1] == 0) {
+      if (habit[0] != "date" && habit[1] != null) {
+        if (habit[1] == 0 || this.isFuture) {
           arr[1]++;
+        } else {
+          arr[0]++;
         }
       }
     });
