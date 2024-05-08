@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Inject, PLATFORM_ID } from "@angular/core";
 import { NgIf, isPlatformBrowser, NgClass } from "@angular/common";
 
@@ -6,10 +6,6 @@ import { NgIf, isPlatformBrowser, NgClass } from "@angular/common";
 import { DataService } from '../../../data.service';
 
 import { BaseChartDirective } from 'ng2-charts';
-import { Chart } from 'chart.js/auto';
-
-
-
 
 @Component({
   selector: 'app-habit-pie-chart',
@@ -39,11 +35,9 @@ export class HabitPieChartComponent implements OnInit {
   };
 
   @Input() isFuture!: boolean;
-  @Input() date!: string;
+  @Input() dateData!: object;
   @Input() title!: string;
   @Input() selected!: boolean;
-
-  @ViewChild(BaseChartDirective) chart!: BaseChartDirective;
 
   constructor(data: DataService, @Inject(PLATFORM_ID) private platformId: Object) {
     this.data = data;
@@ -52,19 +46,15 @@ export class HabitPieChartComponent implements OnInit {
   ngOnInit(): void {
     this.isBrowser = isPlatformBrowser(this.platformId);
 
-    this.data.getDate("habit", this.date).subscribe(
-      data => {
-        this.config.data.datasets[0].data = this.parseData(data);
-        if (this.chart) {
-          this.chart.ngOnChanges({});
-        }
-      }
-    );
+    this.config.data.datasets[0].data = this.parseData(this.dateData);
   }
 
-  parseData(data: Object[]) {
+  parseData(data: Object) {
+    if (data == null || data == undefined) {
+      return [5, 5];
+    }
     const arr = [0, 0];
-    Object.entries(data[0]).forEach((habit) => {
+    Object.entries(data).forEach((habit) => {
       if (habit[0] != "date" && habit[1] != null) {
         if (habit[1] == 0 || this.isFuture) {
           arr[1]++;

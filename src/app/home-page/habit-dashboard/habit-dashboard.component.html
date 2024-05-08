@@ -1,9 +1,7 @@
-<p>habit-dashboard works!</p>
-
-<div id="habit-pie-chart-holder">
+<div id="habit-pie-chart-holder" *ngIf="loaded">
     <ng-container *ngFor="let date of dates; let i = index">
         <app-habit-pie-chart
-            [isFuture]="i > dayOfTheWeek" [date]="date" [title]="daysOfTheWeek[i]" [selected]="i == selected"
+            [isFuture]="i > dayOfTheWeek" [dateData]="date" [title]="daysOfTheWeek[i]" [selected]="i == selected"
             (click)="selected = i"
         ></app-habit-pie-chart>
     </ng-container>

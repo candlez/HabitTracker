@@ -4,6 +4,7 @@ Make Dashboard
 
 Upcoming:
 Make "About" Page
+Add Authentification To Forms
 Finish README
 Style Nav Bar
 Style Dashboard

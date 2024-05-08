@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NgFor } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 
 import { HabitPieChartComponent } from './habit-pie-chart/habit-pie-chart.component';
 
@@ -9,33 +9,51 @@ import { DataService } from '../../data.service';
 @Component({
   selector: 'app-habit-dashboard',
   standalone: true,
-  imports: [HabitPieChartComponent, NgFor],
+  imports: [HabitPieChartComponent, NgFor, NgIf],
   templateUrl: './habit-dashboard.component.html',
   styleUrl: './habit-dashboard.component.css'
 })
-export class HabitDashboardComponent {
+export class HabitDashboardComponent implements OnInit {
   data: DataService;
-  dates: string[];
-  dayOfTheWeek: number;
+  dates: Object[];
+  dayOfTheWeek!: number;
   daysOfTheWeek: string[] = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-  selected: number;
+  selected!: number;
+  loaded: boolean = false;
 
   constructor(data: DataService) {
     this.data = data;
     this.dates = [];
     this.dates.length = 7;
+  }
 
+  ngOnInit(): void {
     const date = new Date();
     this.dayOfTheWeek = date.getDay();
     date.setDate(date.getDate() - this.dayOfTheWeek);
-    for (var i = 0; i < this.dayOfTheWeek; i++) {
-      this.dates[i] = this.data.getDateString(date);
+
+    var outer = 0;
+    var inner = 0;
+    while (outer < this.dayOfTheWeek) {
+      this.data.getDate("habit", this.data.getDateString(date)).subscribe(
+        data => {
+          this.dates[inner] = data[0]
+          inner++;
+        }
+      );
       date.setDate(date.getDate() + 1);
+      outer++;
     }
-    const today = this.data.getDateString(date);
-    for (var i = this.dayOfTheWeek; i < 7; i++) {
-      this.dates[i] = today;
-    }
+    this.data.getDate("habit", this.data.getDateString(date)).subscribe(
+      data => {
+        this.loaded = true;
+        for (var j = this.dayOfTheWeek; j < 7; j++) {
+          this.dates[j] = data[0];
+        }
+      }
+    );
     this.selected = this.dayOfTheWeek;
   }
+
+
 }
