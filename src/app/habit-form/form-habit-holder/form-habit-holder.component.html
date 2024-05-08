@@ -1,4 +1,4 @@
-<div class="habit-text-box">
+<div class="habit-text-box" [ngClass]="{'green-out': habit.originalValue == 1}">
     <p class="habit-text">{{habit.name}}</p>
     <input 
         type="checkbox" (click)="this.toggleStatus(); this.checked.emit(this.status)" *ngIf="this.habit.originalValue == 0"

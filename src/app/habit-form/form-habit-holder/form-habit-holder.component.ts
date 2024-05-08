@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { NgIf } from '@angular/common';
+import { NgIf, NgClass } from '@angular/common';
 
 import { Habit } from '../../data.service';
 
@@ -7,7 +7,7 @@ import { Habit } from '../../data.service';
 @Component({
   selector: 'app-form-habit-holder',
   standalone: true,
-  imports: [NgIf],
+  imports: [NgIf, NgClass],
   templateUrl: './form-habit-holder.component.html',
   styleUrl: './form-habit-holder.component.css'
 })
