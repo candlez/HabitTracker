@@ -2,9 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Inject, PLATFORM_ID } from "@angular/core";
 import { NgIf, isPlatformBrowser, NgClass } from "@angular/common";
 
-
-import { DataService } from '../../../data.service';
-
 import { BaseChartDirective } from 'ng2-charts';
 
 @Component({
@@ -15,7 +12,6 @@ import { BaseChartDirective } from 'ng2-charts';
   styleUrl: './habit-pie-chart.component.css'
 })
 export class HabitPieChartComponent implements OnInit {
-  data: DataService;
 
   isBrowser: boolean = false;
 
@@ -39,8 +35,8 @@ export class HabitPieChartComponent implements OnInit {
   @Input() title!: string;
   @Input() selected!: boolean;
 
-  constructor(data: DataService, @Inject(PLATFORM_ID) private platformId: Object) {
-    this.data = data;
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) { 
+
   }
 
   ngOnInit(): void {
