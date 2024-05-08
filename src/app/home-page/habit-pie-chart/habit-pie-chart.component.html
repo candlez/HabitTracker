@@ -1,0 +1,8 @@
+
+<div class="habit-pie-chart-holder">
+    <!--<canvas id="pie-chart-canvas">{{chart}}</canvas>-->
+    <canvas 
+        id="habit-pie-chart" *ngIf="isBrowser" baseChart 
+        [options]="config.options" [datasets]="config.data.datasets" [type]="'doughnut'"
+    ></canvas>
+</div>

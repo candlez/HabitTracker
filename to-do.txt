@@ -1,11 +1,11 @@
 In Progress:
-Make Metrics Pages
+Make Dashboard
 
 
 Upcoming:
-Make Dashboard
 Make "About" Page
 Finish README
+Style Nav Bar
 Style Dashboard
 Style About Page
 Style Metric Pages
@@ -16,6 +16,7 @@ Deploy
 
 
 Completed:
+Make Metrics Pages
 Make Complete Habits Page
 Make Edit Habits Page
 Create MySQL Database
