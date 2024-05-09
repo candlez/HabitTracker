@@ -1,4 +1,5 @@
 #edit-habit-holder-box {
     display: grid;
     grid-template-columns: 1fr;
+    padding-bottom: 100px;
 }

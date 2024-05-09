@@ -14,12 +14,15 @@
 <app-edit-habit-popup
     *ngIf="editHabitPopUp" (habitEvent)="editHabit(selectedHabit, $event)" (clickedOff)="exitPopUps()"
 ></app-edit-habit-popup>
-<div id="edit-habit-holder-box">
-    <app-edit-habit-holder 
-        *ngFor="let habit of habits" [habit]="habit" (deleteClicked)="deleteHabit(habit)"
-        (editClicked)="setEditHabitPopUp(true); setSelectedHabit(habit)"
-        (toggleClicked)="toggleHabit(habit)"
-    ></app-edit-habit-holder>
+<div id="editor-wrapper">
+    <div id="edit-habit-holder-box">
+        <app-edit-habit-holder 
+            *ngFor="let habit of habits" [habit]="habit" (deleteClicked)="deleteHabit(habit)"
+            (editClicked)="setEditHabitPopUp(true); setSelectedHabit(habit)"
+            (toggleClicked)="toggleHabit(habit)"
+        ></app-edit-habit-holder>
+    </div>
+    <app-create-bar (createHabitClicked)="setCreateHabitPopUp(true)"></app-create-bar>
 </div>
-<app-create-bar (createHabitClicked)="setCreateHabitPopUp(true)"></app-create-bar>
+
 
