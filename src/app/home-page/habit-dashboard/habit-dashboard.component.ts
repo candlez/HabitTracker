@@ -21,7 +21,6 @@ export class HabitDashboardComponent implements OnInit {
   dayOfTheWeek!: number;
   daysOfTheWeek: string[] = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   selected!: number;
-  selectedDate!: Object;
   loaded: boolean = false;
 
   constructor(data: DataService) {
@@ -54,12 +53,7 @@ export class HabitDashboardComponent implements OnInit {
         for (var j = this.dayOfTheWeek; j < 7; j++) {
           this.dates[j] = data[0];
         }
-        this.selectedDate = this.dates[this.selected];
       }
     );
-  }
-
-  test() {
-    console.log(this.selectedDate);
   }
 }
