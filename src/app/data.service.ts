@@ -39,6 +39,10 @@ export class DataService {
     return this.http.get<Object[]>(`${this.baseURL}/date/${table}/${date}`);
   }
 
+  getEntry(table: string, date: string, column: string) {
+    return this.http.get<any[]>(`${this.baseURL}/date/${table}/${date}/${column}`);
+  }
+
   markEntry(table: string, date: string, column: string, value: any) {
     return this.http.put(`${this.baseURL}/date/${table}/${date}/${column}/${value}`, undefined);
   }
