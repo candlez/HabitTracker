@@ -4,6 +4,10 @@
     margin-right: auto;
     z-index: 2;
     position: relative;
+    border-width: 3px;
+    border-color: black;
+    border-style: solid;
+
 }
 
 #completed-habits-holder {
@@ -11,6 +15,9 @@
     width: 100%;
     display: grid;
     grid-template-columns: 15% 1fr;
+    border-width: 3px;
+    border-color: black;
+    border-bottom-style: solid;
 }
 
 #not-completed-habits-holder {
@@ -26,7 +33,7 @@
     align-content: center;
     border-width: 3px;
     border-color: black;
-    border-style: solid;
+    border-right-style: solid;
     overflow: hidden;
     font-size: larger;
     flex-wrap: wrap;
@@ -38,7 +45,7 @@
     align-content: center;
     border-width: 3px;
     border-color: black;
-    border-style: solid;
+    border-right-style: solid;
     overflow: hidden;
     font-size: larger;
     flex-wrap: wrap;
