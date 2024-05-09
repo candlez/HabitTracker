@@ -1,0 +1,17 @@
+.habit-holder {
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 5px;
+    border-width: 3px;
+    padding: 3px;
+}
+
+.habit-text {
+    line-height: 0em;
+    font-size: large;
+}

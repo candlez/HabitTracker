@@ -2,14 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { NgFor, NgIf } from '@angular/common';
 
 import { HabitPieChartComponent } from './habit-pie-chart/habit-pie-chart.component';
+import { HabitDashboardReportComponent } from './habit-dashboard-report/habit-dashboard-report.component';
 
 import { DataService } from '../../data.service';
+
 
 
 @Component({
   selector: 'app-habit-dashboard',
   standalone: true,
-  imports: [HabitPieChartComponent, NgFor, NgIf],
+  imports: [HabitPieChartComponent, NgFor, NgIf, HabitDashboardReportComponent],
   templateUrl: './habit-dashboard.component.html',
   styleUrl: './habit-dashboard.component.css'
 })
@@ -19,6 +21,7 @@ export class HabitDashboardComponent implements OnInit {
   dayOfTheWeek!: number;
   daysOfTheWeek: string[] = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   selected!: number;
+  selectedDate!: Object;
   loaded: boolean = false;
 
   constructor(data: DataService) {
@@ -30,6 +33,7 @@ export class HabitDashboardComponent implements OnInit {
   ngOnInit(): void {
     const date = new Date();
     this.dayOfTheWeek = date.getDay();
+    this.selected = this.dayOfTheWeek;
     date.setDate(date.getDate() - this.dayOfTheWeek);
 
     var outer = 0;
@@ -50,10 +54,12 @@ export class HabitDashboardComponent implements OnInit {
         for (var j = this.dayOfTheWeek; j < 7; j++) {
           this.dates[j] = data[0];
         }
+        this.selectedDate = this.dates[this.selected];
       }
     );
-    this.selected = this.dayOfTheWeek;
   }
 
-
+  test() {
+    console.log(this.selectedDate);
+  }
 }

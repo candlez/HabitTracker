@@ -1,0 +1,22 @@
+<div id="habit-dashboard-report-holder">
+    <div id="completed-habits-holder">
+        <div id="completed-habits-text-box">
+            <p id="completed-habits-text">Completed</p>
+        </div>
+        <div class="habit-holder-holder">
+            <app-dashboard-habit-holder
+                *ngFor="let completed of completed" [habit]="completed"
+            ></app-dashboard-habit-holder>
+        </div>
+    </div>
+    <div id="not-completed-habits-holder">
+        <div id="not-completed-habits-text-box">
+            <p id="not-completed-habits-text">Not Completed</p>
+        </div>
+        <div class="habit-holder-holder">
+            <app-dashboard-habit-holder
+                *ngFor="let notCompleted of notCompleted" [habit]="notCompleted"
+            ></app-dashboard-habit-holder>
+        </div>
+    </div>
+</div>

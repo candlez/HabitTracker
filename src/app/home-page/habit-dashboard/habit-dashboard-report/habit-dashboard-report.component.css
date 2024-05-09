@@ -1,0 +1,51 @@
+#habit-dashboard-report-holder {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 2;
+    position: relative;
+}
+
+#completed-habits-holder {
+    background-color: darkseagreen;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 15% 1fr;
+}
+
+#not-completed-habits-holder {
+    background-color: grey;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 15% 1fr;
+}
+
+#completed-habits-text-box {
+    display: inline-flex;
+    justify-content: center;
+    align-content: center;
+    border-width: 3px;
+    border-color: black;
+    border-style: solid;
+    overflow: hidden;
+    font-size: larger;
+    flex-wrap: wrap;
+}
+
+#not-completed-habits-text-box {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    border-width: 3px;
+    border-color: black;
+    border-style: solid;
+    overflow: hidden;
+    font-size: larger;
+    flex-wrap: wrap;
+}
+
+.habit-holder-holder {
+    display: inline-flex;
+    align-content: center;
+    flex-wrap: wrap;
+}
