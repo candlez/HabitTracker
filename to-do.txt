@@ -1,22 +1,22 @@
 In Progress:
-Make Dashboard
+Make "About" Page
 
 
 Upcoming:
-Make "About" Page
 Add Authentification To Forms
+Dockerize
 Finish README
 Style Nav Bar
 Style Dashboard
 Style About Page
 Style Metric Pages
 Style Habit Pages
-Dockerize
 Kubernetes-ize
 Deploy
 
 
 Completed:
+Make Dashboard
 Make Metrics Pages
 Make Complete Habits Page
 Make Edit Habits Page
