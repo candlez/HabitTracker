@@ -1,0 +1,10 @@
+.metric-line-chart-holder {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    border-color: black;
+    border-width: 3px;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+}
