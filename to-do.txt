@@ -1,21 +1,23 @@
 In Progress:
-Make "About" Page
+
 
 
 Upcoming:
-Add Authentification To Forms
-Dockerize
-Finish README
+Add Authentication To Forms
 Style Nav Bar
 Style Dashboard
-Style About Page
 Style Metric Pages
 Style Habit Pages
+Style About Page
+Finish About Page
+Finish README
+Dockerize Angular App
 Kubernetes-ize
 Deploy
 
 
 Completed:
+Make "About" Page
 Make Dashboard
 Make Metrics Pages
 Make Complete Habits Page
