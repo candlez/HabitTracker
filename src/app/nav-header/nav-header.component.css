@@ -2,7 +2,39 @@ nav {
     position: absolute;
     width: 100%;
     background-color: green;
-    height: 100px;
+    height: 50;
     top: 0%;
     left: 0%;
+    border-bottom: solid;
+    border-width: 3px;
+    border-color: black;
+}
+
+#nav-holder {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 50px;
+    border-right: solid;
+    border-width: 3px;
+    border-color: black;
+}
+
+.nav-link {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    border-left: solid;
+    border-width: 3px;
+    border-color: black;
+}
+
+.nav-text {
+    font-family: "Mulish", sans-serif;
+    font-size: x-large;
+    padding-left: 3px;
+    padding-right: 3px;
 }

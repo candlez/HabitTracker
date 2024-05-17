@@ -1,10 +1,8 @@
 In Progress:
-
+Add Authentication To Forms
 
 
 Upcoming:
-Add Authentication To Forms
-Style Nav Bar
 Style Dashboard
 Style Metric Pages
 Style Habit Pages
@@ -17,6 +15,7 @@ Deploy
 
 
 Completed:
+Style Nav Bar
 Make "About" Page
 Make Dashboard
 Make Metrics Pages
