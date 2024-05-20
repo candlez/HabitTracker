@@ -3,6 +3,7 @@ Add Authentication To Forms
 
 
 Upcoming:
+Style Login Page
 Style Dashboard
 Style Metric Pages
 Style Habit Pages

@@ -6,8 +6,10 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { MetricFormComponent } from './metric-form/metric-form.component';
 import { MetricEditorComponent } from './metric-editor/metric-editor.component';
 import { AboutPageComponent } from './about-page/about-page.component';
+import { LoginPageComponent } from './login-page/login-page.component';
 
 export const routes: Routes = [
+    {path: "login", component: LoginPageComponent},
     {path: "about", component: AboutPageComponent},
     {path: "habits/edit", component: HabitEditorComponent},
     {path: "habits", component: HabitFormComponent},
