@@ -1,1 +1,23 @@
-<p>login-page works!</p>
+<!--
+    Requirements
+    1. textbox for entering username
+    2. textbox for entering password
+    3. "submit" button
+
+    should be in the center of the page
+    should have labels
+
+-->
+<div id="login-holder-holder">
+    <div id="login-holder">
+        <h1 id="login-header">Login</h1>
+        <p id="username-label">username</p>
+        <input type="text" id="username-text-box" #usernameText>
+        <p id="password-label">password</p>
+        <input type="password" id="password-text-box" #passwordText>
+        <button 
+            id="login-submit-button" (click)="handleSubmit(usernameText.value, passwordText.value)"
+        >Submit</button>
+    </div>
+</div>
+
