@@ -13,12 +13,8 @@ export class AuthService {
     this.http = http;
   }
 
-  signup(username: string, password: string) {
-    return this.http.put(`${this.baseURL}/signup`, {username, password});
-  }
-
   login(username: string, password: string) {
-    return this.http.put(`${this.baseURL}/login`, {username, password});
+    return this.http.put(`${this.baseURL}/login`, {username, password}, {responseType: "text", withCredentials: true});
   }
 
   authenticate() {
