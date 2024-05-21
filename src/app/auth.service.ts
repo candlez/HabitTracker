@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class AuthService {
     return this.http.put(`${this.baseURL}/login`, {username, password}, {responseType: "text", withCredentials: true});
   }
 
-  authenticate() {
-    return this.http.get(`${this.baseURL}/authenticate`);
+  authenticate(): Observable<string> {
+    return this.http.get(`${this.baseURL}/authenticate`, {responseType: "text", withCredentials: true});
   }
 }
