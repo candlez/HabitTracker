@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +11,32 @@ export class AuthService {
 
   returnPath: string = "";
 
+  status: BehaviorSubject<boolean>;
+  status$: Observable<boolean>;
+
+
   constructor(http: HttpClient) { 
     this.http = http;
+
+    this.status = new BehaviorSubject<boolean>(false);
+
+    this.authenticate().subscribe(data => {
+      if (data == "true") {
+        this.status.next(true);
+      } else {
+        this.status.next(false);
+      }     
+    });
+
+    this.status$ = this.status.asObservable();
   }
 
   login(username: string, password: string) {
     return this.http.put(`${this.baseURL}/login`, {username, password}, {responseType: "text", withCredentials: true});
+  }
+
+  logOut(): Observable<string> {
+    return this.http.put(`${this.baseURL}/logout`, undefined, {responseType: "text", withCredentials: true});
   }
 
   authenticate(): Observable<string> {
@@ -29,5 +49,13 @@ export class AuthService {
 
   setReturnPath(path: string) {
     this.returnPath = path;
+  }
+
+  getStatusObservable() {
+    return this.status$;
+  }
+
+  setStatus(status: boolean) {
+    this.status.next(status);
   }
 }

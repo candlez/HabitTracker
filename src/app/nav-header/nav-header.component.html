@@ -12,8 +12,11 @@
         <div class="nav-link" routerLink="/about">
             <p class="nav-text">ABOUT</p>
         </div>
-        <div class="nav-link" routerLink="/login">
+        <div class="nav-link" routerLink="/login" *ngIf="!loggedIn">
             <p class="nav-text">LOG IN</p>
+        </div>
+        <div class="nav-link" routerLink="/login" *ngIf="loggedIn" (click)="handleLogOut()">
+            <p class="nav-text">LOG OUT</p>
         </div>
     </div>
 </nav>

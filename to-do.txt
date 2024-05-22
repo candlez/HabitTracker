@@ -1,5 +1,4 @@
 In Progress:
-Add Authentication To Forms
 
 
 Upcoming:
@@ -7,8 +6,8 @@ Style Login Page
 Style Dashboard
 Style Metric Pages
 Style Habit Pages
-Style About Page
 Finish About Page
+Style About Page
 Finish README
 Dockerize Angular App
 Kubernetes-ize
@@ -16,6 +15,7 @@ Deploy
 
 
 Completed:
+Add Authentication To Forms
 Style Nav Bar
 Make "About" Page
 Make Dashboard

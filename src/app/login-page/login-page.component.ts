@@ -25,13 +25,14 @@ export class LoginPageComponent {
     this.auth.login(username, password).subscribe(
       data => {
         if (data == "logged in successfully!") {
+          this.auth.setStatus(true);
           const path = this.auth.getReturnPath();
           if (path != "") {
             this.auth.setReturnPath("");
             this.router.navigateByUrl(path);
           }
         } else if (data == "username not found") {
-
+          
         } else if (data == "password incorrect") {
           
         } else {
