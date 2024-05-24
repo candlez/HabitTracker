@@ -20,15 +20,6 @@ export class AuthService {
     this.http = http;
 
     this.status = new BehaviorSubject<boolean>(false);
-
-    // this.authenticate().subscribe(data => {
-    //   if (data == "true") {
-    //     this.status.next(true);
-    //   } else {
-    //     this.status.next(false);
-    //   }
-    // });
-
     this.status$ = this.status.asObservable();
   }
 

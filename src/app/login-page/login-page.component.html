@@ -8,7 +8,7 @@
     should have labels
 
 -->
-<div id="login-holder-holder">
+<div id="login-holder-holder" *ngIf="loaded">
     <div id="login-holder">
         <h1 id="login-header">Login</h1>
         <p id="username-label">username</p>
@@ -20,5 +20,3 @@
         >Submit</button>
     </div>
 </div>
-<button (click)="test()">Auth</button>
-
