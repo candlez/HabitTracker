@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
+import { response } from 'express';
 
 @Injectable({
   providedIn: 'root'
@@ -20,13 +21,13 @@ export class AuthService {
 
     this.status = new BehaviorSubject<boolean>(false);
 
-    this.authenticate().subscribe(data => {
-      if (data == "true") {
-        this.status.next(true);
-      } else {
-        this.status.next(false);
-      }     
-    });
+    // this.authenticate().subscribe(data => {
+    //   if (data == "true") {
+    //     this.status.next(true);
+    //   } else {
+    //     this.status.next(false);
+    //   }
+    // });
 
     this.status$ = this.status.asObservable();
   }
@@ -40,7 +41,18 @@ export class AuthService {
   }
 
   authenticate(): Observable<string> {
-    return this.http.get(`${this.baseURL}/authenticate`, {responseType: "text", withCredentials: true});
+    return this.http.get(`${this.baseURL}/authenticate`, {responseType: "text", withCredentials: true}).pipe(
+      map(
+        response => {
+          if (response == "true") {
+            this.status.next(true);
+          } else {
+            this.status.next(false);
+          }
+          return response;
+        }
+      )
+    );
   }
 
   getReturnPath() {
@@ -57,5 +69,9 @@ export class AuthService {
 
   setStatus(status: boolean) {
     this.status.next(status);
+  }
+
+  getStatus() {
+    return this.status.getValue();
   }
 }

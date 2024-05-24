@@ -41,4 +41,10 @@ export class LoginPageComponent {
       }
     );
   }
+
+  test() {
+    this.auth.authenticate().subscribe(data => {
+      console.log(data);
+    });
+  }
 }
