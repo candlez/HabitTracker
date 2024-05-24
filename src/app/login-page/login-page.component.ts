@@ -17,7 +17,7 @@ export class LoginPageComponent {
   auth: AuthService;
   router: Router;
 
-  loaded: boolean = false;
+  loaded: boolean = true;
 
   constructor(auth: AuthService, router: Router, windowService: WindowService, @Inject(PLATFORM_ID) private platformId: Object) {
     this.auth = auth;
@@ -25,18 +25,20 @@ export class LoginPageComponent {
 
     if (isPlatformBrowser(platformId)) {
       windowService.getNativeWindow().addEventListener("load", () => {
+        this.loaded = false;
+        console.log("listener in login page fired")
         this.auth.authenticate().subscribe((result) => {
           if (result == "true") {
             const path = this.auth.getReturnPath();
-            if (path != "") {
-              this.auth.setReturnPath("");
-              this.router.navigateByUrl(path);
-            }
+            this.auth.setReturnPath("/dashboard");
+            this.router.navigateByUrl(path);
           }
           this.loaded = true;
-        })
-      })
+        });
+      });
     }
+
+    console.log("login page constructor")
   }
 
   handleSubmit(username: string, password: string) {
@@ -45,10 +47,8 @@ export class LoginPageComponent {
         if (data == "logged in successfully!") {
           this.auth.setStatus(true);
           const path = this.auth.getReturnPath();
-          if (path != "") {
-            this.auth.setReturnPath("");
-            this.router.navigateByUrl(path);
-          }
+          this.auth.setReturnPath("/dashboard");
+          this.router.navigateByUrl(path);
         } else if (data == "username not found") {
           
         } else if (data == "password incorrect") {

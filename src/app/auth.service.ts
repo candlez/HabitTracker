@@ -10,7 +10,7 @@ export class AuthService {
   http: HttpClient;
   baseURL: string = "http://localhost:8393";
 
-  returnPath: string = "";
+  returnPath: string = "/dashboard";
 
   status: BehaviorSubject<boolean>;
   status$: Observable<boolean>;
