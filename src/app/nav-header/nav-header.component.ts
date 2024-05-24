@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { NgIf, isPlatformBrowser } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
@@ -13,32 +13,26 @@ import { WindowService } from '../window.service';
   templateUrl: './nav-header.component.html',
   styleUrl: './nav-header.component.css'
 })
-export class NavHeaderComponent implements OnInit {
+export class NavHeaderComponent {
   auth: AuthService;
-  windowService: WindowService;
   loggedIn: boolean = false;
   loaded: boolean = false;
 
 
   constructor(auth: AuthService, windowService: WindowService, @Inject(PLATFORM_ID) private platformId: Object) {
     this.auth = auth;
-    this.windowService = windowService;
 
     this.auth.getStatusObservable().subscribe(data => {
       this.loggedIn = data;
     });
 
     if (isPlatformBrowser(platformId)) {
-      this.windowService.getNativeWindow().addEventListener("load", () => {
+      windowService.getNativeWindow().addEventListener("load", () => {
         this.auth.authenticate().subscribe(() => {
           this.loaded = true;
         });
       });
     }
-  }
-
-  ngOnInit(): void {
-
   }
 
   handleLogOut() {
