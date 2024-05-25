@@ -1,8 +1,7 @@
 In Progress:
-Style Login Page
+Style Dashboard
 
 Upcoming:
-Style Dashboard
 Style Metric Pages
 Style Habit Pages
 Finish About Page
@@ -14,6 +13,7 @@ Deploy
 
 
 Completed:
+Style Login Page
 Add Authentication To Forms
 Style Nav Bar
 Make "About" Page
