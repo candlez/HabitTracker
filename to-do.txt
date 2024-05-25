@@ -1,8 +1,7 @@
 In Progress:
-
+Style Login Page
 
 Upcoming:
-Style Login Page
 Style Dashboard
 Style Metric Pages
 Style Habit Pages

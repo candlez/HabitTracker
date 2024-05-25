@@ -2,12 +2,13 @@ nav {
     position: absolute;
     width: 100%;
     background-color: green;
-    height: 50;
+    height: 6vh;
     top: 0%;
     left: 0%;
     border-bottom: solid;
     border-width: 3px;
     border-color: black;
+    z-index: 5;
 }
 
 #nav-holder {
@@ -16,7 +17,7 @@ nav {
     margin-right: auto;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: 50px;
+    grid-template-rows: 6vh;
     border-right: solid;
     border-width: 3px;
     border-color: black;

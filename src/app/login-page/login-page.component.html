@@ -10,13 +10,13 @@
 -->
 <div id="login-holder-holder" *ngIf="loaded">
     <div id="login-holder">
-        <h1 id="login-header">Login</h1>
-        <p id="username-label">username</p>
-        <input type="text" id="username-text-box" #usernameText>
-        <p id="password-label">password</p>
-        <input type="password" id="password-text-box" #passwordText>
+        <h2 id="login-header">Log in to Habit Tracker</h2>
+        <p id="username-label" class="login-text">Username</p>
+        <input type="text" id="username-text-box" class="login-input" #usernameText>
+        <p id="password-label" class="login-text">Password</p>
+        <input type="password" id="password-text-box" class="login-input" #passwordText>
         <button 
             id="login-submit-button" (click)="handleSubmit(usernameText.value, passwordText.value)"
-        >Submit</button>
+        >Log in</button>
     </div>
 </div>
