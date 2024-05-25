@@ -17,7 +17,7 @@ export class LoginPageComponent {
   auth: AuthService;
   router: Router;
 
-  loaded: boolean = true;
+  loaded: boolean = false;
 
   constructor(auth: AuthService, router: Router, windowService: WindowService, @Inject(PLATFORM_ID) private platformId: Object) {
     this.auth = auth;
@@ -25,8 +25,6 @@ export class LoginPageComponent {
 
     if (isPlatformBrowser(platformId)) {
       windowService.getNativeWindow().addEventListener("load", () => {
-        this.loaded = false;
-        console.log("listener in login page fired")
         this.auth.authenticate().subscribe((result) => {
           if (result == "true") {
             const path = this.auth.getReturnPath();
@@ -37,8 +35,6 @@ export class LoginPageComponent {
         });
       });
     }
-
-    console.log("login page constructor")
   }
 
   handleSubmit(username: string, password: string) {
