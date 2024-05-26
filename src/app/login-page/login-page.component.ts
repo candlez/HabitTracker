@@ -20,10 +20,13 @@ export class LoginPageComponent {
   loaded: boolean = true;
 
   authError: boolean = false;
+  redirect: boolean;
 
   constructor(auth: AuthService, router: Router, windowService: WindowService, @Inject(PLATFORM_ID) private platformId: Object) {
     this.auth = auth;
     this.router = router;
+
+    this.redirect = (this.auth.getReturnPath() != "/dashboard");
 
     if (isPlatformBrowser(platformId)) {
       windowService.getNativeWindow().addEventListener("load", () => {

@@ -9,6 +9,9 @@
 
 -->
 <div id="login-holder-holder" *ngIf="loaded">
+    <div id="redirect-holder" *ngIf="redirect">
+        <p id="redirect-text">You must be logged in to view that page</p>
+    </div>
     <div id="login-holder">
         <h2 id="login-header">Log in to HabitTracker</h2>
         <p id="username-label" class="login-text">Username</p>
