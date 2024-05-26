@@ -7,7 +7,7 @@
 }
 
 #login-holder {
-    position: absolute; /* or fixed */
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -75%);
@@ -60,4 +60,25 @@
     border-radius: 5px;
     border-color: black;
     border-style: solid;
+}
+
+#auth-error-holder {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 175%);
+    width: 300px;
+    background-color: lightcoral;
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 5px;
+    border-color: maroon;
+}
+
+#auth-error-text {
+    font-family: "Mulish", sans-serif;
+    text-align: center;
+    font-size: large;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }

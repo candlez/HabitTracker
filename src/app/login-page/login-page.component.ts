@@ -19,6 +19,8 @@ export class LoginPageComponent {
 
   loaded: boolean = true;
 
+  authError: boolean = false;
+
   constructor(auth: AuthService, router: Router, windowService: WindowService, @Inject(PLATFORM_ID) private platformId: Object) {
     this.auth = auth;
     this.router = router;
@@ -46,10 +48,8 @@ export class LoginPageComponent {
           const path = this.auth.getReturnPath();
           this.auth.setReturnPath("/dashboard");
           this.router.navigateByUrl(path);
-        } else if (data == "username not found") {
-          
-        } else if (data == "password incorrect") {
-          
+        } else if (data == "username not found" || data == "password incorrect") {
+          this.authError = true;
         } else {
           console.log(data);
         }

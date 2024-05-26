@@ -19,4 +19,7 @@
             id="login-submit-button" (click)="handleSubmit(usernameText.value, passwordText.value)"
         >Log in</button>
     </div>
+    <div id="auth-error-holder" *ngIf="authError">
+        <p id="auth-error-text">Username or Password is incorrect</p>
+    </div>
 </div>
