@@ -46,6 +46,8 @@
     font-size: large;
     background-color: honeydew;
     border-radius: 5px;
+    border-color: black;
+    border-style: solid;
 }
 
 #login-submit-button {
