@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, map } from 'rxjs';
-import { response } from 'express';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +9,8 @@ export class AuthService {
   http: HttpClient;
   baseURL: string = "http://localhost:8393";
 
-  returnPath: string = "/dashboard";
+  returnPath: BehaviorSubject<string>;
+  returnPath$: Observable<string>;
 
   status: BehaviorSubject<boolean>;
   status$: Observable<boolean>;
@@ -18,6 +18,9 @@ export class AuthService {
 
   constructor(http: HttpClient) { 
     this.http = http;
+
+    this.returnPath = new BehaviorSubject<string>("/dashboard");
+    this.returnPath$ = this.returnPath.asObservable();
 
     this.status = new BehaviorSubject<boolean>(false);
     this.status$ = this.status.asObservable();
@@ -46,12 +49,16 @@ export class AuthService {
     );
   }
 
-  getReturnPath() {
-    return this.returnPath;
+  getReturnPathObservable() {
+    return this.returnPath$;
+  }
+  
+  setReturnPath(path: string) {
+    this.returnPath.next(path);
   }
 
-  setReturnPath(path: string) {
-    this.returnPath = path;
+  getReturnPath() {
+    return this.returnPath.getValue();
   }
 
   getStatusObservable() {

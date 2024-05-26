@@ -18,7 +18,6 @@ export class LoginPageComponent {
   router: Router;
 
   loaded: boolean = true;
-
   authError: boolean = false;
   redirect: boolean;
 
@@ -27,6 +26,12 @@ export class LoginPageComponent {
     this.router = router;
 
     this.redirect = (this.auth.getReturnPath() != "/dashboard");
+
+    this.auth.getReturnPathObservable().subscribe(
+      data => {
+        this.redirect = (this.auth.getReturnPath() != "/dashboard");
+      }
+    )
 
     if (isPlatformBrowser(platformId)) {
       windowService.getNativeWindow().addEventListener("load", () => {

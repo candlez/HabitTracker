@@ -42,4 +42,8 @@ export class NavHeaderComponent {
       }
     });
   }
+
+  resetReturnPath() {
+    this.auth.setReturnPath("/dashboard");
+  }
 }
