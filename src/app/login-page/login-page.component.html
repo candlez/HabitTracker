@@ -8,7 +8,10 @@
     should have labels
 
 -->
-<div id="login-holder-holder" *ngIf="loaded">
+<div 
+    tabindex="0" id="login-holder-holder" *ngIf="loaded" 
+    (keydown)="handleKeyPress($event, usernameText.value, passwordText.value)"
+>
     <div id="redirect-holder" *ngIf="redirect">
         <p id="redirect-text">You must be logged in to view that page</p>
     </div>

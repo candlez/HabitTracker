@@ -64,4 +64,10 @@ export class LoginPageComponent {
       }
     );
   }
+
+  handleKeyPress(event: KeyboardEvent, username: string, password: string) {
+    if (event.key == "Enter") {
+      this.handleSubmit(username, password);
+    }
+  }
 }
