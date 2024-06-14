@@ -19,7 +19,7 @@ export class LoginPageComponent {
   router: Router;
 
   loaded: boolean = false;
-  authError: boolean = false;
+  authError: string = "";
   redirect: boolean;
 
   constructor(auth: AuthService, router: Router, windowService: WindowService, @Inject(PLATFORM_ID) private platformId: Object) {
@@ -61,7 +61,11 @@ export class LoginPageComponent {
           this.auth.setReturnPath("/dashboard");
           this.router.navigateByUrl(path);
         } else if (data == "username not found" || data == "password incorrect") {
-          this.authError = true;
+          this.authError = "Username or Password is incorrect";
+        } else if (data == "you must specify a username") {
+          this.authError = "You must provide a Username";
+        } else if (data == "you must specify a password") {
+          this.authError = "You must provide a Password"
         } else {
           console.log(data);
         }
