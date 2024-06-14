@@ -16,21 +16,26 @@
         <p id="redirect-text">You must be logged in to view that page</p>
     </div>
     <div id="login-holder">
-        <h2 id="login-header">Log in to HabitTracker</h2>
-        <p id="username-label" class="login-text">Username</p>
-        <input type="text" id="username-text-box" class="login-input" #usernameText>
-        <p id="password-label" class="login-text">Password</p>
-        <input type="password" id="password-text-box" class="login-input" #passwordText>
-        <button 
-            id="login-submit-button" (click)="handleSubmit(usernameText.value, passwordText.value)"
-        >Log in</button>
+        <div [ngClass]="{'hidden': authenticating}">
+            <h2 id="login-header">Log in to HabitTracker</h2>
+            <p id="username-label" class="login-text">Username</p>
+            <input type="text" id="username-text-box" class="login-input" #usernameText>
+            <p id="password-label" class="login-text">Password</p>
+            <input type="password" id="password-text-box" class="login-input" #passwordText>
+            <button 
+                id="login-submit-button" (click)="handleSubmit(usernameText.value, passwordText.value)"
+            >Log in</button>
+        </div>
+        <div class="spinner-wrapper over" *ngIf="authenticating">
+            <mat-spinner></mat-spinner>
+        </div>
     </div>
     <div id="auth-error-holder" *ngIf="authError !== ''">
         <p id="auth-error-text">{{authError}}</p>
     </div>
 </div>
 <ng-template #spinner>
-    <div id="spinner-wrapper">
+    <div class="spinner-wrapper" id="page-spinner">
         <mat-spinner></mat-spinner>
     </div>
 </ng-template>

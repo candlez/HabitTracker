@@ -1,5 +1,5 @@
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser, NgIf } from '@angular/common';
+import { isPlatformBrowser, NgIf, NgClass } from '@angular/common';
 import { Router } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
@@ -10,7 +10,7 @@ import { WindowService } from '../window.service';
 @Component({
   selector: 'app-login-page',
   standalone: true,
-  imports: [NgIf, MatProgressSpinnerModule],
+  imports: [NgIf, MatProgressSpinnerModule, NgClass],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.css'
 })
@@ -21,6 +21,7 @@ export class LoginPageComponent {
   loaded: boolean = false;
   authError: string = "";
   redirect: boolean;
+  authenticating: boolean = false;
 
   constructor(auth: AuthService, router: Router, windowService: WindowService, @Inject(PLATFORM_ID) private platformId: Object) {
     this.auth = auth;
@@ -53,8 +54,10 @@ export class LoginPageComponent {
   }
 
   handleSubmit(username: string, password: string) {
+    this.authenticating = true;
     this.auth.login(username, password).subscribe(
       data => {
+        this.authenticating = false;
         if (data == "logged in successfully!") {
           this.auth.setStatus(true);
           const path = this.auth.getReturnPath();

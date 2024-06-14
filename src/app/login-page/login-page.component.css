@@ -105,11 +105,25 @@
     margin-bottom: 5px;
 }
 
-#spinner-wrapper {
-    height: calc(94vh - 100px);
+.spinner-wrapper {
+    height: 100%;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+}
+
+#page-spinner {
+    height: calc(94vh - 100px);
+}
+
+.hidden {
+    opacity: 0%;
+}
+
+.over {
+    position: absolute;
+    top: 0;
+    left: 0;
 }
