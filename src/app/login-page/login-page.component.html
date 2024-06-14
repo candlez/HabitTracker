@@ -9,7 +9,7 @@
 
 -->
 <div 
-    tabindex="0" id="login-holder-holder" *ngIf="loaded" 
+    tabindex="0" id="login-holder-holder" *ngIf="loaded; else spinner" 
     (keydown)="handleKeyPress($event, usernameText.value, passwordText.value)"
 >
     <div id="redirect-holder" *ngIf="redirect">
@@ -29,3 +29,9 @@
         <p id="auth-error-text">Username or Password is incorrect</p>
     </div>
 </div>
+<ng-template #spinner>
+    <div id="spinner-wrapper">
+        <mat-spinner></mat-spinner>
+    </div>
+</ng-template>
+

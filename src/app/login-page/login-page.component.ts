@@ -1,6 +1,7 @@
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { AuthService } from '../auth.service';
 import { WindowService } from '../window.service';
@@ -9,7 +10,7 @@ import { WindowService } from '../window.service';
 @Component({
   selector: 'app-login-page',
   standalone: true,
-  imports: [NgIf],
+  imports: [NgIf, MatProgressSpinnerModule],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.css'
 })
