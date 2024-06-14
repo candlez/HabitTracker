@@ -17,7 +17,7 @@ export class LoginPageComponent {
   auth: AuthService;
   router: Router;
 
-  loaded: boolean = true;
+  loaded: boolean = false;
   authError: boolean = false;
   redirect: boolean;
 
@@ -34,17 +34,20 @@ export class LoginPageComponent {
     )
 
     if (isPlatformBrowser(platformId)) {
-      windowService.getNativeWindow().addEventListener("load", () => {
-        this.loaded = false;
-        this.auth.authenticate().subscribe((result) => {
-          if (result == "true") {
-            const path = this.auth.getReturnPath();
-            this.auth.setReturnPath("/dashboard");
-            this.router.navigateByUrl(path);
-          }
-          this.loaded = true;
+      if (windowService.isWindowLoaded()) {
+        this.loaded = true;
+      } else {
+        windowService.getNativeWindow().addEventListener("load", () => {
+          this.auth.authenticate().subscribe((result) => {
+            if (result == "true") {
+              const path = this.auth.getReturnPath();
+              this.auth.setReturnPath("/dashboard");
+              this.router.navigateByUrl(path);
+            }
+            this.loaded = true;
+          });
         });
-      });
+      }
     }
   }
 

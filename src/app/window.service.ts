@@ -14,4 +14,8 @@ export class WindowService {
   getNativeWindow() {
     return _window();
   }
+
+  isWindowLoaded() {
+    return this.getNativeWindow().document.readyState === "complete";
+  }
 }
