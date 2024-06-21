@@ -2,10 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Inject, PLATFORM_ID } from "@angular/core";
 import { NgIf, isPlatformBrowser } from '@angular/common';
 
-
 import { DataService } from '../../../data.service';
 
 import { BaseChartDirective } from 'ng2-charts';
+
 
 @Component({
   selector: 'app-metric-line-chart',
@@ -17,8 +17,6 @@ import { BaseChartDirective } from 'ng2-charts';
 export class MetricLineChartComponent implements OnInit {
   @Input() metric!: string;
   @Input() dates!: string[];
-
-  data: DataService;
 
   loaded: boolean = false;
 
@@ -35,6 +33,7 @@ export class MetricLineChartComponent implements OnInit {
       spanGaps: true
     },
     options: {
+      maintainAspectRatio: false,
       scales: {
         y: {
           min: 0
@@ -45,8 +44,8 @@ export class MetricLineChartComponent implements OnInit {
 
   isBrowser!: boolean;
 
-  constructor(data: DataService, @Inject(PLATFORM_ID) private platformId: Object) { 
-    this.data = data;
+  constructor(private data: DataService, @Inject(PLATFORM_ID) private platformId: Object) {
+
   }
 
   ngOnInit(): void {
