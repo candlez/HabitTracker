@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 export class DataService {
   // this is where the HTTP requests will be made I think
   http: HttpClient;
-  baseURL: string = "http://localhost:8393";
+  baseURL: string = environment.API_BASE_URL;
 
 
   constructor(http: HttpClient) { 
