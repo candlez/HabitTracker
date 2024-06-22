@@ -1,12 +1,12 @@
 .habit-pit-chart-holder {
     max-width: 140px;
-    height: 170px !important;
+    height: 170px;
 }
 
 #habit-pie-chart {
     margin-top: 0%;
     max-width: 140px;
-    height: 150px;
+    height: 140px;
     margin-right: auto;
     margin-left: auto;
     margin-bottom: auto;

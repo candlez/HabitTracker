@@ -9,4 +9,18 @@
     border-right-style: solid;
     border-bottom-style: solid;
     font-family: "Mulish", sans-serif;
+
+    animation-name: green-in;
+    animation-duration: 2s;
+}
+
+@keyframes green-in {
+    0% {
+        background-color: green;
+        opacity: 0;
+    }
+    100% {
+        background-color: white;
+        opacity: 100%;
+    }
 }
