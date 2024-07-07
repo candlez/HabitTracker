@@ -1,6 +1,7 @@
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser, NgIf } from '@angular/common';
+import { isPlatformBrowser, NgIf, NgClass } from '@angular/common';
 import { Router } from '@angular/router';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { AuthService } from '../auth.service';
 import { WindowService } from '../window.service';
@@ -9,7 +10,7 @@ import { WindowService } from '../window.service';
 @Component({
   selector: 'app-login-page',
   standalone: true,
-  imports: [NgIf],
+  imports: [NgIf, MatProgressSpinnerModule, NgClass],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.css'
 })
@@ -17,9 +18,10 @@ export class LoginPageComponent {
   auth: AuthService;
   router: Router;
 
-  loaded: boolean = true;
-  authError: boolean = false;
+  loaded: boolean = false;
+  authError: string = "";
   redirect: boolean;
+  authenticating: boolean = false;
 
   constructor(auth: AuthService, router: Router, windowService: WindowService, @Inject(PLATFORM_ID) private platformId: Object) {
     this.auth = auth;
@@ -34,30 +36,39 @@ export class LoginPageComponent {
     )
 
     if (isPlatformBrowser(platformId)) {
-      windowService.getNativeWindow().addEventListener("load", () => {
-        this.loaded = false;
-        this.auth.authenticate().subscribe((result) => {
-          if (result == "true") {
-            const path = this.auth.getReturnPath();
-            this.auth.setReturnPath("/dashboard");
-            this.router.navigateByUrl(path);
-          }
-          this.loaded = true;
+      if (windowService.isWindowLoaded()) {
+        this.loaded = true;
+      } else {
+        windowService.getNativeWindow().addEventListener("load", () => {
+          this.auth.authenticate().subscribe((result) => {
+            if (result == "true") {
+              const path = this.auth.getReturnPath();
+              this.auth.setReturnPath("/dashboard");
+              this.router.navigateByUrl(path);
+            }
+            this.loaded = true;
+          });
         });
-      });
+      }
     }
   }
 
   handleSubmit(username: string, password: string) {
+    this.authenticating = true;
     this.auth.login(username, password).subscribe(
       data => {
+        this.authenticating = false;
         if (data == "logged in successfully!") {
           this.auth.setStatus(true);
           const path = this.auth.getReturnPath();
           this.auth.setReturnPath("/dashboard");
           this.router.navigateByUrl(path);
         } else if (data == "username not found" || data == "password incorrect") {
-          this.authError = true;
+          this.authError = "Username or Password is incorrect";
+        } else if (data == "you must specify a username") {
+          this.authError = "You must provide a Username";
+        } else if (data == "you must specify a password") {
+          this.authError = "You must provide a Password"
         } else {
           console.log(data);
         }
