@@ -1,14 +1,14 @@
 import { Routes } from '@angular/router';
 
-import { authGuard } from './auth.guard';
+import { authGuard } from './guards/auth.guard';
 
-import { HabitFormComponent } from './habit-form/habit-form.component';
-import { HabitEditorComponent } from './habit-editor/habit-editor.component';
-import { HomePageComponent } from './home-page/home-page.component';
-import { MetricFormComponent } from './metric-form/metric-form.component';
-import { MetricEditorComponent } from './metric-editor/metric-editor.component';
-import { AboutPageComponent } from './about-page/about-page.component';
-import { LoginPageComponent } from './login-page/login-page.component';
+import { HabitFormComponent } from './components/habit-form/habit-form.component';
+import { HabitEditorComponent } from './components/habit-editor/habit-editor.component';
+import { HomePageComponent } from './components/home-page/home-page.component';
+import { MetricFormComponent } from './components/metric-form/metric-form.component';
+import { MetricEditorComponent } from './components/metric-editor/metric-editor.component';
+import { AboutPageComponent } from './components/about-page/about-page.component';
+import { LoginPageComponent } from './components/login-page/login-page.component';
 
 export const routes: Routes = [
     {path: "login", component: LoginPageComponent},

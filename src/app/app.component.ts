@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 
-import { HabitFormComponent } from './habit-form/habit-form.component';
-import { NavHeaderComponent } from './nav-header/nav-header.component';
+import { HabitFormComponent } from './components/habit-form/habit-form.component';
+import { NavHeaderComponent } from './components/nav-header/nav-header.component';
 
 @Component({
   selector: 'app-root',
