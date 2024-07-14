@@ -1,9 +1,12 @@
 #habit-pie-chart-holder {
     display: grid;
-    grid-template-columns: repeat(7, 150px);
+    /* grid-template-columns: repeat(7, 150px); */
+    grid-template-columns: repeat(7, minmax(140px, 1fr));
     justify-content: space-around;
     grid-template-rows: 170px;
     width: 70%;
+    max-width: 70%;
+    overflow-x: auto;
     margin-left: auto;
     margin-right: auto;
     border-color: black;
@@ -12,4 +15,18 @@
     border-right-style: solid;
     border-top-style: solid;
     font-family: "Mulish", sans-serif;
+
+    animation-name: green-in;
+    animation-duration: 2s;
+}
+
+@keyframes green-in {
+    0% {
+        background-color: green;
+        opacity: 0;
+    }
+    100% {
+        background-color: white;
+        opacity: 100%;
+    }
 }

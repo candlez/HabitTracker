@@ -11,7 +11,7 @@ import { WindowService } from '../../services/window.service';
   standalone: true,
   imports: [RouterLink, RouterLinkActive, NgIf],
   templateUrl: './nav-header.component.html',
-  styleUrl: './nav-header.component.css'
+  styleUrl: './nav-header.component.scss'
 })
 export class NavHeaderComponent {
   auth: AuthService;

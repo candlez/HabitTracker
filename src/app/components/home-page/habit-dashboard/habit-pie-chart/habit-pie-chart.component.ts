@@ -26,6 +26,7 @@ export class HabitPieChartComponent implements OnInit {
       ]
     },
     options: {
+      animation: false,
       radius: 60
     }
   };
