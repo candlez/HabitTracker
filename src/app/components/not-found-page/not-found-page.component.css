@@ -1,0 +1,13 @@
+#not-found-holder {
+    display: flex;
+    height: 80%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+#center {
+    display: grid;
+    grid-template-columns: 1fr;
+    text-align: center;
+}

@@ -9,6 +9,7 @@ import { MetricFormComponent } from './components/metric-form/metric-form.compon
 import { MetricEditorComponent } from './components/metric-editor/metric-editor.component';
 import { AboutPageComponent } from './components/about-page/about-page.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
+import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 
 export const routes: Routes = [
     {path: "login", component: LoginPageComponent},
@@ -18,5 +19,7 @@ export const routes: Routes = [
     {path: "metrics/edit", component: MetricEditorComponent, canActivate: [authGuard]},
     {path: "metrics", component: MetricFormComponent, canActivate: [authGuard]},
     {path: "dashboard", component: HomePageComponent},
-    {path: "", redirectTo: "/dashboard", pathMatch: "full"}
+    {path: "not-found", component: NotFoundPageComponent},
+    {path: "", redirectTo: "/dashboard", pathMatch: "full"},
+    {path: "**", redirectTo: "not-found", pathMatch: "full"},
 ];
