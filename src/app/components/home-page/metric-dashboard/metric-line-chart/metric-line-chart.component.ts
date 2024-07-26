@@ -53,17 +53,19 @@ export class MetricLineChartComponent implements OnInit {
     this.config.data.labels.pop();
     this.config.data.datasets[0].data.pop();
     this.config.data.datasets[0].label = this.metric;
-    var valueList: number[] = [];
+    var valueList: number[] = new Array(30);
+    let counter: number = 0;
 
     this.dates.forEach((date, index) => {
       this.data.getEntry("metric", date, this.metric).subscribe(
         data => {
+          counter++;
           if (data.length == 0 || data[0][this.metric] == "-1") {
-            valueList.push(NaN);
+            valueList[index] = NaN;
           } else {
-            valueList.push(data[0][this.metric]);
+            valueList[index] = data[0][this.metric]
           }
-          if (valueList.length == 30) {
+          if (counter == 30) {
             this.config.data.datasets[0].data = valueList;
             this.loaded = true;
           }
