@@ -33,5 +33,18 @@
 }
 
 .green-out {
-    background-color: darkseagreen;
+    animation-name: green-out;
+    animation-duration: 1s;
+}
+
+@keyframes green-out {
+    0% {
+        background-color: white;
+    }
+    50% {
+        background-image: linearGradient(to right, darkseagreen, white);
+    }
+    100% {
+        background-color: darkseagreen;
+    }
 }
