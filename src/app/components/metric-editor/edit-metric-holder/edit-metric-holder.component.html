@@ -1,8 +1,0 @@
-<div class="metric-box" [ngClass]="{'grey-out': metric.COLUMN_DEFAULT == '-1'}">
-    <p class="metric-text">{{metric.COLUMN_NAME}}</p>
-    <button class="metric-delete-button" (click)="deleteClicked.emit()">Delete</button>
-    <button class="metric-toggle-button" (click)="toggleClicked.emit()">
-        {{metric.COLUMN_DEFAULT == '-1' ? "Enable" : "Disable"}}
-    </button>
-    <button class="metric-edit-button" (click)="editClicked.emit()">Edit</button>
-</div>
