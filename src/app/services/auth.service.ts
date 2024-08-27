@@ -7,24 +7,13 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class AuthService {
-  http: HttpClient;
   baseURL: string = environment.API_BASE_URL;
 
-  returnPath: BehaviorSubject<string>;
-  returnPath$: Observable<string>;
-
-  status: BehaviorSubject<boolean>;
-  status$: Observable<boolean>;
+  returnPath: BehaviorSubject<string> = new BehaviorSubject<string>("/dashboard");
+  status: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
 
-  constructor(http: HttpClient) { 
-    this.http = http;
-
-    this.returnPath = new BehaviorSubject<string>("/dashboard");
-    this.returnPath$ = this.returnPath.asObservable();
-
-    this.status = new BehaviorSubject<boolean>(false);
-    this.status$ = this.status.asObservable();
+  constructor(public http: HttpClient) { 
   }
 
   login(username: string, password: string) {
@@ -50,27 +39,27 @@ export class AuthService {
     );
   }
 
-  getReturnPathObservable() {
-    return this.returnPath$;
+  getReturnPathObservable(): Observable<string> {
+    return this.returnPath.asObservable();
   }
   
-  setReturnPath(path: string) {
+  setReturnPath(path: string): void {
     this.returnPath.next(path);
   }
 
-  getReturnPath() {
+  getReturnPath(): string {
     return this.returnPath.getValue();
   }
 
-  getStatusObservable() {
-    return this.status$;
+  getStatusObservable(): Observable<boolean> {
+    return this.status.asObservable();
   }
 
-  setStatus(status: boolean) {
+  setStatus(status: boolean): void {
     this.status.next(status);
   }
 
-  getStatus() {
+  getStatus(): boolean {
     return this.status.getValue();
   }
 }
