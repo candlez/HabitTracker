@@ -1,10 +1,10 @@
 #habit-dashboard-report-holder {
-    width: 70%;
+    width: 980px;
     margin-left: auto;
     margin-right: auto;
     z-index: 2;
     position: relative;
-    border-width: 3px;
+    border-width: 2px;
     border-color: black;
     border-style: solid;
     font-family: "Mulish", sans-serif;
@@ -15,7 +15,7 @@
     width: 100%;
     display: grid;
     grid-template-columns: 15% 1fr;
-    border-width: 3px;
+    border-width: 2px;
     border-color: black;
     border-bottom-style: solid;
 }
@@ -31,7 +31,7 @@
     display: inline-flex;
     justify-content: center;
     align-content: center;
-    border-width: 3px;
+    border-width: 2px;
     border-color: black;
     border-right-style: solid;
     overflow: hidden;
@@ -43,7 +43,7 @@
     display: flex;
     justify-content: center;
     align-content: center;
-    border-width: 3px;
+    border-width: 2px;
     border-color: black;
     border-right-style: solid;
     overflow: hidden;

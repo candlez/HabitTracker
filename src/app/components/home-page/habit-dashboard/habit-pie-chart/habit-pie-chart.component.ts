@@ -32,6 +32,12 @@ export class HabitPieChartComponent implements OnInit {
       ]
     },
     options: {
+      events: [],
+      plugins: {
+        tooltip: {
+          enabled: false
+        }
+      },
       animation: false,
       radius: 60
     }
