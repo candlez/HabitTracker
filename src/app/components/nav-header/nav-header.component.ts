@@ -14,13 +14,14 @@ import { WindowService } from '../../services/window.service';
   styleUrl: './nav-header.component.scss'
 })
 export class NavHeaderComponent {
-  auth: AuthService;
   loggedIn: boolean = false;
   loaded: boolean = false;
 
 
-  constructor(auth: AuthService, windowService: WindowService, @Inject(PLATFORM_ID) private platformId: Object) {
-    this.auth = auth;
+  constructor(
+    public auth: AuthService, 
+    windowService: WindowService, 
+    @Inject(PLATFORM_ID) private platformId: Object) {
 
     this.auth.getStatusObservable().subscribe(data => {
       this.loggedIn = data;

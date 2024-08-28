@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, map } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { BehaviorSubject, Observable, catchError, map, throwError, of } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -28,14 +28,22 @@ export class AuthService {
     return this.http.get(`${this.baseURL}/authenticate`, {responseType: "text", withCredentials: true}).pipe(
       map(
         response => {
-          if (response == "true") {
+          if (response === "true") {
             this.status.next(true);
           } else {
             this.status.next(false);
           }
           return response;
         }
-      )
+      ),
+      catchError((error: HttpErrorResponse) => {
+        this.status.next(false);
+        if (error.status === 401) {
+          return of("false");
+        } else {
+          return throwError(() => error);
+        }
+      })
     );
   }
 
