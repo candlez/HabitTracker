@@ -8,20 +8,20 @@ nav {
     top: 0%;
     left: 0%;
     border-bottom: solid;
-    border-width: 3px;
+    border-width: 2px;
     border-color: black;
     z-index: 5;
 }
 
 #nav-holder {
-    width: 50%;
+    width: 750px;
     margin-left: auto;
     margin-right: auto;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: 6vh;
     border-right: solid;
-    border-width: 3px;
+    border-width: 2px;
     border-color: black;
 }
 
@@ -31,14 +31,18 @@ nav {
     justify-content: center;
     align-content: center;
     border-left: solid;
-    border-width: 3px;
+    border-width: 2px;
     border-color: black;
     cursor: pointer;
 }
 
+.nav-link:hover .nav-text {
+    color: darkseagreen;
+}
+
 .nav-text {
     font-family: "Mulish", sans-serif;
-    color: beige;
+    color: white;
     font-size: x-large;
     padding-left: 8px;
     padding-right: 8px;
