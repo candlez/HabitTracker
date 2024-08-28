@@ -20,7 +20,7 @@ export class HabitDashboardComponent implements OnInit {
   today!: number;
   daysOfTheWeek: string[] = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   selected!: number;
-  datesSet: number = 0;
+  loaded: boolean = false;
 
   constructor(public habitService: HabitService) {
   }
@@ -30,25 +30,24 @@ export class HabitDashboardComponent implements OnInit {
     this.today = now.getDay();
     this.selected = this.today;
     now.setDate(now.getDate() - this.today);
-    for (let i: number = 0; i < 7; i++) {
+    for (let i: number = 0; i <= this.today; i++) {
       this.getDateData(this.habitService.getDateString(now), i);
       now.setDate(now.getDate() + 1);
     }
   }
 
   getDateData(date: string, index: number): void {
-    if (index > this.today) {
-      this.dates[index] = this.dates[this.today];
-      this.datesSet++;
-    } else {
-      this.habitService.getDate(date).subscribe({
-        next: (date: HabitDate) => {
-          this.dates[index] = date;
-          this.datesSet++;
-        },
-        error: (error: HttpErrorResponse) => {console.error(error)}
-      })
-    }
-
+    this.habitService.getDate(date).subscribe({
+      next: (date: HabitDate) => {
+        this.dates[index] = date;
+        if (index === this.today) {
+          for (let i: number = index + 1; i < 7; i++) {
+            this.dates[i] = this.dates[index];
+          }
+          this.loaded = true;
+        }
+      },
+      error: (error: HttpErrorResponse) => {console.error(error)}
+    });
   }
 }
