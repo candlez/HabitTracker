@@ -1,6 +1,6 @@
 <ng-container *ngIf="loaded">
     <app-metric-line-chart
         *ngFor="let metric of metrics"
-        [dates]="dates" [metric]="metric"
+        [startDate]="startDate" [endDate]="endDate" [metric]="metric.name"
     ></app-metric-line-chart>
 </ng-container>

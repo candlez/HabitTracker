@@ -47,6 +47,10 @@ export class HabitService {
     return this.http.delete(`${this.baseURL}/habits/${name}`, {responseType: "text"});
   }
 
+  getDate(date: string): Observable<HabitDate> {
+    return this.http.get<HabitDate>(`${this.baseURL}/habits/dates/${date}`);
+  }
+
   getValue(name: string, date: string): Observable<HabitDateValuePair> {
     return this.http.get<HabitDateValuePair>(`${this.baseURL}/habits/dates/${name}/${date}`);
   }
@@ -64,6 +68,10 @@ export interface Habit {
   name: string,
   description: string,
   enabled: boolean
+}
+
+export interface HabitDate {
+  date: string,
 }
 
 export interface HabitDateValuePair {

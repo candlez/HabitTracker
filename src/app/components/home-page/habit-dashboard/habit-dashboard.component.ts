@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NgFor, NgIf } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 
 import { HabitPieChartComponent } from './habit-pie-chart/habit-pie-chart.component';
 import { HabitDashboardReportComponent } from './habit-dashboard-report/habit-dashboard-report.component';
 
-import { DataService } from '../../../services/data.service';
-
+import { HabitDate, HabitService } from '../../../services/habit.service';
 
 
 @Component({
@@ -16,44 +16,39 @@ import { DataService } from '../../../services/data.service';
   styleUrl: './habit-dashboard.component.css'
 })
 export class HabitDashboardComponent implements OnInit {
-  data: DataService;
-  dates: Object[];
-  dayOfTheWeek!: number;
+  dates: HabitDate[] = [];
+  today!: number;
   daysOfTheWeek: string[] = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   selected!: number;
-  loaded: boolean = false;
+  datesSet: number = 0;
 
-  constructor(data: DataService) {
-    this.data = data;
-    this.dates = [];
-    this.dates.length = 7;
+  constructor(public habitService: HabitService) {
   }
 
   ngOnInit(): void {
-    const date = new Date();
-    this.dayOfTheWeek = date.getDay();
-    this.selected = this.dayOfTheWeek;
-    date.setDate(date.getDate() - this.dayOfTheWeek);
-
-    var outer = 0;
-    var inner = 0;
-    while (outer < this.dayOfTheWeek) {
-      this.data.getDate("habit", this.data.getDateString(date)).subscribe(
-        data => {
-          this.dates[inner] = data[0]
-          inner++;
-        }
-      );
-      date.setDate(date.getDate() + 1);
-      outer++;
+    const now = new Date();
+    this.today = now.getDay();
+    this.selected = this.today;
+    now.setDate(now.getDate() - this.today);
+    for (let i: number = 0; i < 7; i++) {
+      this.getDateData(this.habitService.getDateString(now), i);
+      now.setDate(now.getDate() + 1);
     }
-    this.data.getDate("habit", this.data.getDateString(date)).subscribe(
-      data => {
-        this.loaded = true;
-        for (var j = this.dayOfTheWeek; j < 7; j++) {
-          this.dates[j] = data[0];
-        }
-      }
-    );
+  }
+
+  getDateData(date: string, index: number): void {
+    if (index > this.today) {
+      this.dates[index] = this.dates[this.today];
+      this.datesSet++;
+    } else {
+      this.habitService.getDate(date).subscribe({
+        next: (date: HabitDate) => {
+          this.dates[index] = date;
+          this.datesSet++;
+        },
+        error: (error: HttpErrorResponse) => {console.error(error)}
+      })
+    }
+
   }
 }

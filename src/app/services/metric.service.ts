@@ -16,7 +16,7 @@ export class MetricService {
     return local.toISOString().split('T')[0];
   }
 
-  geMetrics(): Observable<Metric[]> {
+  getMetrics(): Observable<Metric[]> {
     return this.http.get<Metric[]>(`${this.baseURL}/metrics`)
   }
 
@@ -45,6 +45,10 @@ export class MetricService {
     return this.http.delete(`${this.baseURL}/metrics/${name}`, {responseType: "text"});
   }
 
+  getDate(date: string): Observable<MetricDate> {
+    return this.http.get<MetricDate>(`${this.baseURL}/metrics/dates/${date}`);
+  }
+
   getValue(name: string, date: string): Observable<MetricDateValuePair> {
     return this.http.get<MetricDateValuePair>(`${this.baseURL}/metrics/dates/${name}/${date}`);
   }
@@ -62,6 +66,10 @@ export interface Metric {
   name: string,
   description: string,
   enabled: boolean
+}
+
+export interface MetricDate {
+  date: string
 }
 
 export interface MetricDateValuePair {

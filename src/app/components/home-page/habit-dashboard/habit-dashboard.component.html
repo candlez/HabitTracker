@@ -1,12 +1,11 @@
-<div id="habit-pie-chart-holder" *ngIf="loaded">
+<div id="habit-pie-chart-holder" *ngIf="datesSet === 7">
     <ng-container *ngFor="let date of dates; let i = index">
         <app-habit-pie-chart
-            [isFuture]="i > dayOfTheWeek" [dateData]="date" [title]="daysOfTheWeek[i]" [selected]="i == selected"
-            (click)="selected = i"
+            [isFuture]="i > today" [dateData]="date" [title]="daysOfTheWeek[i]" 
+            [selected]="i === selected" (click)="selected = i"
         ></app-habit-pie-chart>
     </ng-container>
 </div>
 <app-habit-dashboard-report
-    *ngIf="loaded"
-    [habits]="dates[selected]" [isFuture]="selected > dayOfTheWeek"
+    *ngIf="datesSet === 7" [habits]="dates[selected]" [isFuture]="selected > today"
 ></app-habit-dashboard-report>

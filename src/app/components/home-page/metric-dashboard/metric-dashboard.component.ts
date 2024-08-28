@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NgFor, NgIf } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 
 import { MetricLineChartComponent } from './metric-line-chart/metric-line-chart.component';
 
-import { DataService } from '../../../services/data.service';
+import { MetricService, Metric } from '../../../services/metric.service';
+
 
 @Component({
   selector: 'app-metric-dashboard',
@@ -13,37 +15,28 @@ import { DataService } from '../../../services/data.service';
   styleUrl: './metric-dashboard.component.css'
 })
 export class MetricDashboardComponent implements OnInit {
-  date: string;
-  dates: string[];
-  data: DataService;
-  metrics: string[];
+  startDate!: string;
+  endDate!: string;
+  metrics!: Metric[];
 
   loaded: boolean = false;
 
-  constructor(data: DataService) {
-    this.data = data;
-    this.date = data.getDateString(new Date());
-    this.dates = [];
-    this.metrics = [];
+  constructor(public metricService: MetricService) {
+
   }
 
   ngOnInit(): void {
-    this.data.getColumns("metric").subscribe(
-      data => {
-        data.forEach((metricColumn) => {
-          if (metricColumn.COLUMN_DEFAULT == "0") {
-            this.metrics.push(metricColumn.COLUMN_NAME);
-          }
-        });
-        this.loaded = true;
-      }
-    );
+    const date: Date = new Date();
+    this.endDate = this.metricService.getDateString(date);
+    date.setDate(date.getDate() - 29);
+    this.startDate = this.metricService.getDateString(date);
 
-    var d = new Date();
-    d.setDate(d.getDate() - 29);
-    for (var i = 0; i < 30; i++) {
-      this.dates.push(this.data.getDateString(d));
-      d.setDate(d.getDate() + 1);
-    }
+    this.metricService.getMetrics().subscribe({
+      next: (metrics: Metric[]) => {
+        this.metrics = metrics.filter((metric) => {return metric.enabled});
+        this.loaded = true;
+      },
+      error: (error: HttpErrorResponse) => {console.error(error)}
+    });
   }
 }

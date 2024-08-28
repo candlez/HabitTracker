@@ -4,6 +4,8 @@ import { NgIf, isPlatformBrowser, NgClass } from "@angular/common";
 
 import { BaseChartDirective } from 'ng2-charts';
 
+import { Habit, HabitDate } from '../../../../services/habit.service';
+
 @Component({
   selector: 'app-habit-pie-chart',
   standalone: true,
@@ -12,6 +14,10 @@ import { BaseChartDirective } from 'ng2-charts';
   styleUrl: './habit-pie-chart.component.css'
 })
 export class HabitPieChartComponent implements OnInit {
+  @Input() isFuture!: boolean;
+  @Input() dateData!: HabitDate;
+  @Input() title!: string;
+  @Input() selected!: boolean;
 
   isBrowser: boolean = false;
 
@@ -31,11 +37,6 @@ export class HabitPieChartComponent implements OnInit {
     }
   };
 
-  @Input() isFuture!: boolean;
-  @Input() dateData!: object;
-  @Input() title!: string;
-  @Input() selected!: boolean;
-
   constructor(@Inject(PLATFORM_ID) private platformId: Object) { 
 
   }
@@ -46,14 +47,14 @@ export class HabitPieChartComponent implements OnInit {
     this.config.data.datasets[0].data = this.parseData(this.dateData);
   }
 
-  parseData(data: Object) {
-    if (data == null || data == undefined) {
+  parseData(data: HabitDate) {
+    if (data === null || data === undefined) {
       return [5, 5];
     }
     const arr = [0, 0];
     Object.entries(data).forEach((habit) => {
-      if (habit[0] != "date" && habit[1] != null) {
-        if (habit[1] == 0 || this.isFuture) {
+      if (habit[0] !== "date" && habit[1] !== null) {
+        if (habit[1] === 0 || this.isFuture) {
           arr[1]++;
         } else {
           arr[0]++;

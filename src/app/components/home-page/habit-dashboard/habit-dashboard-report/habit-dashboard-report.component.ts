@@ -22,8 +22,9 @@ export class HabitDashboardReportComponent implements OnInit, OnChanges {
 
   }
 
+  // why are there two of these???
   ngOnInit(): void {
-    this.parseData()
+    this.parseData();
   }
 
   ngOnChanges(): void {

@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Inject, PLATFORM_ID } from "@angular/core";
 import { NgIf, isPlatformBrowser } from '@angular/common';
 
-import { DataService } from '../../../../services/data.service';
+import { MetricDateValuePair, MetricService } from '../../../../services/metric.service';
 
 import { BaseChartDirective } from 'ng2-charts';
 
@@ -16,9 +16,11 @@ import { BaseChartDirective } from 'ng2-charts';
 })
 export class MetricLineChartComponent implements OnInit {
   @Input() metric!: string;
-  @Input() dates!: string[];
+  @Input() startDate!: string;
+  @Input() endDate!: string;
 
   loaded: boolean = false;
+  isBrowser!: boolean;
 
   config = {
     type: "line",
@@ -42,42 +44,36 @@ export class MetricLineChartComponent implements OnInit {
     }
   }
 
-  isBrowser!: boolean;
-
-  constructor(private data: DataService, @Inject(PLATFORM_ID) private platformId: Object) {
+  constructor(public metricService: MetricService, @Inject(PLATFORM_ID) private platformId: Object) {
 
   }
 
   ngOnInit(): void {
     this.isBrowser = isPlatformBrowser(this.platformId);
+
+    // what the actual sigma does this do?
     this.config.data.labels.pop();
     this.config.data.datasets[0].data.pop();
+
     this.config.data.datasets[0].label = this.metric;
-    var valueList: number[] = new Array(30);
-    let counter: number = 0;
 
-    this.dates.forEach((date, index) => {
-      this.data.getEntry("metric", date, this.metric).subscribe(
-        data => {
-          counter++;
-          if (data.length == 0 || data[0][this.metric] == "-1") {
-            valueList[index] = NaN;
+    this.metricService.getValueRange(this.metric, this.startDate, this.endDate).subscribe({
+      next: (data: MetricDateValuePair[]) => {
+        this.config.data.datasets[0].data = data.map((val, index) => {
+          if (index % 6 == 0) {
+            this.config.data.labels.push(val.date.split("T")[0]);
           } else {
-            valueList[index] = data[0][this.metric]
+            this.config.data.labels.push("");
           }
-          if (counter == 30) {
-            this.config.data.datasets[0].data = valueList;
-            this.loaded = true;
-          }
-        }
-      );
 
-      if (index % 6 == 0) {
-        this.config.data.labels.push(date)
-      } else {
-        this.config.data.labels.push("");
+          if (val.value === null) {
+            return NaN;
+          } else {
+            return val.value
+          }
+        });
+        this.loaded = true;
       }
     });
-
   }
 }
