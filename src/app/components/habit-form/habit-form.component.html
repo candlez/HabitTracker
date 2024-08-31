@@ -1,1 +1,38 @@
-<p>habit-form works!</p>
+<div id="form-scroll">
+    <div id="form-wrapper">
+        <div id="form-header">
+            <div>
+                <h1>Habit Form</h1>
+                <p>Mark habits as complete or incomplete</p>
+            </div>
+            <div id="right-holder">
+                <div id="date-picker-holder">
+                    <mat-form-field 
+                        subscriptSizing="dynamic" appearance="outline"
+                        *ngIf="toggleController.value === 'backfill'"
+                        id="form-field"
+                    >
+                        <mat-label>Choose a date</mat-label>
+                        <input 
+                            matInput [matDatepicker]="picker" [formControl]="dateController"
+                            (dateChange)="handleDateSelect($event)" id="date-picker"
+                        >
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div id="toggle-holder">
+                    <mat-button-toggle-group [formControl]="toggleController">
+                        <mat-button-toggle value="today">Today</mat-button-toggle>
+                        <mat-button-toggle value="backfill">Backfill</mat-button-toggle>
+                    </mat-button-toggle-group>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div id="button-holder">
+
+</div>
+
