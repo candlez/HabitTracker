@@ -22,7 +22,9 @@
                     </mat-form-field>
                 </div>
                 <div id="toggle-holder">
-                    <mat-button-toggle-group [formControl]="toggleController">
+                    <mat-button-toggle-group 
+                        [formControl]="toggleController" (change)="handleToggle($event)"
+                    >
                         <mat-button-toggle value="today">Today</mat-button-toggle>
                         <mat-button-toggle value="backfill">Backfill</mat-button-toggle>
                     </mat-button-toggle-group>

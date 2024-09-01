@@ -3,7 +3,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { NgIf, NgFor } from '@angular/common';
 
 import { MatDatepickerInputEvent, MatDatepickerModule } from '@angular/material/datepicker';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatButtonToggleChange, MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { provideNativeDateAdapter } from '@angular/material/core';
@@ -15,7 +15,8 @@ import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
 @Component({
   selector: 'app-habit-form',
   standalone: true,
-  imports: [MatDatepickerModule, MatButtonToggleModule, ReactiveFormsModule, FormsModule, MatInputModule,
+  imports: [
+    MatDatepickerModule, MatButtonToggleModule, ReactiveFormsModule, FormsModule, MatInputModule,
     MatFormFieldModule, NgIf, NgFor
   ],
   providers: [provideNativeDateAdapter()],
@@ -95,6 +96,13 @@ export class HabitFormComponent implements OnInit {
   handleDateSelect(event: MatDatepickerInputEvent<Date>): void {
     if (event.value) {
       const dateString = this.habitService.getDateString(event.value);
+      this.getFormValues(dateString);
+    }
+  }
+
+  handleToggle(event: MatButtonToggleChange) {
+    if (event.value === "today") {
+      this.getFormValues(this.today);
     }
   }
 }
