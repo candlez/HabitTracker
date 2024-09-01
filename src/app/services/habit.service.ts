@@ -70,8 +70,10 @@ export interface Habit {
   enabled: boolean
 }
 
-export interface HabitDate {
+export type HabitDate = {
   date: string,
+} & {
+  [key: string]: boolean | null
 }
 
 export interface HabitDateValuePair {

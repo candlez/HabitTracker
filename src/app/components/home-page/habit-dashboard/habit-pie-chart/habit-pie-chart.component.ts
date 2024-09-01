@@ -53,7 +53,7 @@ export class HabitPieChartComponent implements OnInit {
     this.config.data.datasets[0].data = this.parseData(this.dateData);
   }
 
-  parseData(data: HabitDate) {
+  parseData(data: object) {
     if (data === null || data === undefined) {
       return [5, 5];
     }

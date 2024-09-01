@@ -27,9 +27,16 @@
                         <mat-button-toggle value="backfill">Backfill</mat-button-toggle>
                     </mat-button-toggle-group>
                 </div>
-
             </div>
         </div>
+        <ng-container *ngIf="formValuesLoaded">
+            <div *ngFor="let habit of formValues">
+                <p>{{habit.name}}</p>
+                <p>{{habit.value}}</p>
+                <p>{{habit.description}}</p>
+                <p>{{habit.enabled}}</p>
+            </div>
+        </ng-container>
     </div>
 </div>
 <div id="button-holder">
