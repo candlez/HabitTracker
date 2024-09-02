@@ -96,7 +96,12 @@
 </div>
 <div id="button-holder">
     <button mat-flat-button color="primary" class="bottom-button">edit habits</button>
-    <div></div>
+    <div id="spacer">
+        <button 
+            mat-flat-button color="primary" class="bottom-button" id="disable-button"
+            *ngIf="toggleController.value === 'backfill'" (click)="handleDisable()"
+        >disable</button>
+    </div>
     <button 
         mat-flat-button color="primary" class="bottom-button" (click)="handleSubmit()"
     >submit</button>

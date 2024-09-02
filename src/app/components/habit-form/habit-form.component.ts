@@ -104,6 +104,7 @@ export class HabitFormComponent implements OnInit {
       this.getFormValues(dateString);
     } else {
       // we need to shut down the whole form if the value is invalid
+      // we will do this by making the array empty and adding an error message
     }
   }
 
@@ -146,6 +147,28 @@ export class HabitFormComponent implements OnInit {
           this.formValuesLoaded = true;
         }
       })
+    }
+  }
+
+  handleDisable(): void {
+    for (let i: number = 0; i < this.formValues.length; i++) {
+      let requests = 0;
+      if (this.formValues[i].selected && this.dateController.value) {
+        this.formValuesLoaded = false;
+        requests++;
+        const dateString = this.habitService.getDateString(this.dateController.value);
+        this.habitService.setValue(this.formValues[i].name, dateString, null).subscribe({
+          next: () => {
+            this.formValues[i].value = null;
+            this.formValues[i].selected = false;
+            requests--;
+            // this might technically be a race condition
+            if (requests === 0) {
+              this.formValuesLoaded = true;
+            }
+          }
+        })
+      }
     }
   }
 }

@@ -115,3 +115,12 @@ h1, p {
     margin-right: 5px;
     margin-left: 5px;
 }
+
+#disable-button {
+    width: 125px;
+}
+
+#spacer {
+    display: flex;
+    justify-content: flex-end;
+}

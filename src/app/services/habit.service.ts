@@ -55,7 +55,7 @@ export class HabitService {
     return this.http.get<HabitDateValuePair>(`${this.baseURL}/habits/dates/${name}/${date}`);
   }
 
-  setValue(name: string, date: string, value: boolean): Observable<string> {
+  setValue(name: string, date: string, value: boolean | null): Observable<string> {
     return this.http.put(`${this.baseURL}/habits/dates/${name}/${date}`, {value}, {responseType: "text"});
   }
 
