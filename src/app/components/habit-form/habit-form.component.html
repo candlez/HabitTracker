@@ -74,7 +74,21 @@
                     </div>
 
                     <!-- null -->
-
+                    <div *ngSwitchCase="null" class="form-value-item disabled">
+                        <div class="form-value-grid null-form-value-grid">
+                            <p 
+                                (click)="habit.showDescription = !habit.showDescription"
+                                class="form-value-name"
+                            >{{habit.name}}</p>
+                            <button 
+                                mat-flat-button color="accent" class="enable-button"
+                                (click)="handleUndo(i)"
+                            >enable</button>
+                        </div>
+                        <div *ngIf="habit.showDescription">
+                            <p class="form-value-description">{{habit.description}}</p>
+                        </div>
+                    </div>
                 </ng-container>
             </ng-container>
         </ng-container>

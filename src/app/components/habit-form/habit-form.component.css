@@ -69,11 +69,15 @@
     background-color: #4caf50;
 }
 
-.undo-button {
+.disabled {
+    background-color: #C0C0C0;
+}
+
+.undo-button, .enable-button {
     border-radius: 20px;
 }
 
-.false-form-value-grid {
+.false-form-value-grid, .null-form-value-grid {
     grid-template-columns: 1fr 75px !important;
 }
 
