@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import { NgIf, NgFor } from '@angular/common';
+import { NgIf, NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
 
 import { MatDatepickerInputEvent, MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonToggleChange, MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { HabitService, Habit, HabitDate } from '../../services/habit.service';
-import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
 
 
 @Component({
@@ -17,7 +18,7 @@ import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
   standalone: true,
   imports: [
     MatDatepickerModule, MatButtonToggleModule, ReactiveFormsModule, FormsModule, MatInputModule,
-    MatFormFieldModule, NgIf, NgFor
+    MatFormFieldModule, NgIf, NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault, MatCheckboxModule
   ],
   providers: [provideNativeDateAdapter()],
   templateUrl: './habit-form.component.html',
@@ -70,6 +71,7 @@ export class HabitFormComponent implements OnInit {
             this.formValues.push({
               name: habit.name,
               description: habit.description,
+              showDescription: false,
               enabled: value[habit.name] !== null,
               value: value[habit.name]
             });
@@ -107,9 +109,10 @@ export class HabitFormComponent implements OnInit {
   }
 }
 
-interface HabitFormValue {
+type HabitFormValue = {
   name: string;
   description: string;
+  showDescription: boolean;
   enabled: boolean;
   value: boolean | null;
 }

@@ -32,12 +32,36 @@
             </div>
         </div>
         <ng-container *ngIf="formValuesLoaded">
-            <div *ngFor="let habit of formValues">
-                <p>{{habit.name}}</p>
-                <p>{{habit.value}}</p>
-                <p>{{habit.description}}</p>
-                <p>{{habit.enabled}}</p>
-            </div>
+            <ng-container *ngFor="let habit of formValues">
+                <ng-container [ngSwitch]="habit.value">
+                    <!-- testing case -->
+                    <div *ngSwitchDefault class="form-value-item">
+                        <p>{{habit.name}}</p>
+                        <p>{{habit.value}}</p>
+                        <p>{{habit.description}}</p>
+                        <p>{{habit.enabled}}</p>
+                    </div>
+
+                    <!-- false -->
+                    <div *ngSwitchCase="0" class="form-value-item">
+                        <div class="form-value-grid">
+                            <p 
+                                (click)="habit.showDescription = !habit.showDescription"
+                                class="form-value-name"
+                            >{{habit.name}}</p>
+                            <mat-checkbox></mat-checkbox>
+                        </div>
+                        <div *ngIf="habit.showDescription">
+                            <p class="form-value-description">{{habit.description}}</p>
+                        </div>
+                    </div>
+
+                    <!-- true -->
+
+                    <!-- null -->
+
+                </ng-container>
+            </ng-container>
         </ng-container>
     </div>
 </div>
