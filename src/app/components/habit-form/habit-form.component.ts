@@ -102,6 +102,8 @@ export class HabitFormComponent implements OnInit {
     if (event.value) {
       const dateString = this.habitService.getDateString(event.value);
       this.getFormValues(dateString);
+    } else {
+      // we need to shut down the whole form if the value is invalid
     }
   }
 
@@ -132,6 +134,20 @@ export class HabitFormComponent implements OnInit {
         })
       }
     }
+  }
+
+  handleUndo(index: number): void {
+    if (this.dateController.value) {
+      this.formValuesLoaded = false;
+      const dateString = this.habitService.getDateString(this.dateController.value);
+      this.habitService.setValue(this.formValues[index].name, dateString, false).subscribe({
+        next: () => {
+          this.formValues[index].value = 0;
+          this.formValuesLoaded = true;
+        }
+      })
+    }
+    
   }
 }
 

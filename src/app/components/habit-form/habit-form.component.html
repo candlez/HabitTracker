@@ -32,7 +32,7 @@
             </div>
         </div>
         <ng-container *ngIf="formValuesLoaded">
-            <ng-container *ngFor="let habit of formValues">
+            <ng-container *ngFor="let habit of formValues; let i = index">
                 <ng-container [ngSwitch]="habit.value">
                     <!-- testing case -->
                     <div *ngSwitchDefault class="form-value-item">
@@ -57,6 +57,21 @@
                     </div>
 
                     <!-- true -->
+                    <div *ngSwitchCase="1" class="form-value-item completed">
+                        <div class="form-value-grid false-form-value-grid">
+                            <p 
+                                (click)="habit.showDescription = !habit.showDescription"
+                                class="form-value-name"
+                            >{{habit.name}}</p>
+                            <button 
+                                mat-flat-button color="accent" class="undo-button"
+                                (click)="handleUndo(i)"
+                            >undo</button>
+                        </div>
+                        <div *ngIf="habit.showDescription">
+                            <p class="form-value-description">{{habit.description}}</p>
+                        </div>
+                    </div>
 
                     <!-- null -->
 

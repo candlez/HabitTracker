@@ -56,12 +56,25 @@
     display: grid;
     grid-template-columns: 1fr 40px;
     align-items: center;
+    height: 40px
 }
 
 .form-value-name {
     font-family: "Mulish", sans-serif;
     cursor: pointer;
     font-size: 1.25em;
+}
+
+.completed {
+    background-color: #4caf50;
+}
+
+.undo-button {
+    border-radius: 20px;
+}
+
+.false-form-value-grid {
+    grid-template-columns: 1fr 75px !important;
 }
 
 .form-value-description {
@@ -81,9 +94,6 @@ h1, p {
 #button-holder {
     background-color: blueviolet;
     height: 3.5em;
-    /* border-width: 2px;
-    border-color: black;
-    border-top-style: solid; */
     justify-content: center;
     align-items: center;
     display: grid;
