@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgIf, NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 import { MatDatepickerInputEvent, MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonToggleChange, MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -13,14 +14,13 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { HabitService, Habit, HabitDate } from '../../services/habit.service';
 
-
 @Component({
   selector: 'app-habit-form',
   standalone: true,
   imports: [
     MatDatepickerModule, MatButtonToggleModule, ReactiveFormsModule, FormsModule, MatInputModule,
     MatFormFieldModule, NgIf, NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault, MatCheckboxModule,
-    MatButtonModule
+    MatButtonModule, RouterLink
   ],
   providers: [provideNativeDateAdapter()],
   templateUrl: './habit-form.component.html',
