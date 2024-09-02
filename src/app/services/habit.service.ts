@@ -73,7 +73,7 @@ export interface Habit {
 export type HabitDate = {
   date: string,
 } & {
-  [key: string]: boolean | null
+  [key: string]: number | null
 }
 
 export interface HabitDateValuePair {

@@ -1,5 +1,5 @@
 #form-scroll {
-    height: calc(100% - 4em);
+    height: calc(100% - 3.5em + 2px);
     width: 100%;
     display: flex;
     justify-content: center;
@@ -80,8 +80,24 @@ h1, p {
 
 #button-holder {
     background-color: blueviolet;
-    height: 4em;
-    border-width: 2px;
+    height: 3.5em;
+    /* border-width: 2px;
     border-color: black;
-    border-top-style: solid;
+    border-top-style: solid; */
+    justify-content: center;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 200px 1fr 150px;
+}
+
+.bottom-button {
+    font-family: "Mulish", sans-serif;
+    border-radius: 20px;
+    font-size: 1.25em;
+    height: 2.25em;
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    margin-right: 5px;
+    margin-left: 5px;
 }
