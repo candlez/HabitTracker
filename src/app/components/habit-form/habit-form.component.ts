@@ -12,6 +12,8 @@ import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 import { HabitService, Habit, HabitDate } from '../../services/habit.service';
 
@@ -21,7 +23,7 @@ import { HabitService, Habit, HabitDate } from '../../services/habit.service';
   imports: [
     MatDatepickerModule, MatButtonToggleModule, ReactiveFormsModule, FormsModule, MatInputModule,
     MatFormFieldModule, NgIf, NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault, MatCheckboxModule,
-    MatButtonModule, RouterLink, MatIconModule
+    MatButtonModule, RouterLink, MatIconModule, MatProgressSpinnerModule
   ],
   providers: [provideNativeDateAdapter()],
   templateUrl: './habit-form.component.html',
@@ -71,7 +73,6 @@ export class HabitFormComponent implements OnInit {
         for (let i: number = 0; i < this.habits.length; i++) {
           const habit: Habit = this.habits[i];
           if (habit.enabled || this.toggleController.value === "backfill") {
-            console.log(habit)
             this.formValues.push({
               name: habit.name,
               description: habit.description,
@@ -85,9 +86,8 @@ export class HabitFormComponent implements OnInit {
 
         if (this.formValues.length === 0) {
           // no habits error handling (see below)
-        } else {
-          this.formValuesLoaded = true;
         }
+        this.formValuesLoaded = true;
       },
       error: (error: HttpErrorResponse) => {
         if (error.status === 404) {
@@ -111,7 +111,10 @@ export class HabitFormComponent implements OnInit {
   }
 
   handleToggle(event: MatButtonToggleChange): void {
-    if (event.value === "today") {
+    if (event.value === "today" && (
+      this.dateController.value && 
+      this.habitService.getDateString(this.dateController.value) !== this.today
+    )) {
       this.getFormValues(this.today);
       this.dateController.setValue(new Date());
     }

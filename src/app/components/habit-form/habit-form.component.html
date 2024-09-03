@@ -31,7 +31,7 @@
                 </div>
             </div>
         </div>
-        <ng-container *ngIf="formValuesLoaded">
+        <ng-container *ngIf="formValuesLoaded; else spinner">
             <ng-container *ngFor="let habit of formValues; let i = index">
                 <ng-container [ngSwitch]="habit.value">
                     <!-- testing case -->
@@ -97,6 +97,11 @@
                 </button>
             </div>
         </ng-container>
+        <ng-template #spinner>
+            <div id="spinner-holder">
+                <mat-spinner color="primary"></mat-spinner>
+            </div>
+        </ng-template>
     </div>
 </div>
 <div id="button-holder">
