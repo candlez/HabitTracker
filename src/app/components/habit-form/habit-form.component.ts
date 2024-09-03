@@ -70,7 +70,8 @@ export class HabitFormComponent implements OnInit {
       next: (value: HabitDate) => {
         for (let i: number = 0; i < this.habits.length; i++) {
           const habit: Habit = this.habits[i];
-          if (this.toggleController.value === "backfill" || habit.enabled) {
+          if (habit.enabled || this.toggleController.value === "backfill") {
+            console.log(habit)
             this.formValues.push({
               name: habit.name,
               description: habit.description,
