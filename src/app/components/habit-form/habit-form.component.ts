@@ -41,6 +41,8 @@ export class HabitFormComponent implements OnInit {
   today!: string;
   dateController: FormControl<Date | null> = new FormControl<Date | null>(new Date());
 
+  errorMsg: string | null = null;
+
   constructor(public habitService: HabitService) {
 
   }
@@ -56,9 +58,9 @@ export class HabitFormComponent implements OnInit {
       },
       error: (error: HttpErrorResponse) => {
         if (error.status === 404) {
-          // no habits???
+          this.errorMsg = "you have no habits!"
         } else {
-          // generic error
+          this.errorMsg = "something went wrong unexpectedly :(";
         }
         this.habitsLoaded = true;
       }
@@ -67,6 +69,7 @@ export class HabitFormComponent implements OnInit {
 
   getFormValues(date: string) {
     this.formValuesLoaded = false;
+    this.errorMsg = null;
     this.formValues = [];
     this.habitService.getDate(date).subscribe({
       next: (value: HabitDate) => {
@@ -85,15 +88,15 @@ export class HabitFormComponent implements OnInit {
         }
 
         if (this.formValues.length === 0) {
-          // no habits error handling (see below)
+          this.errorMsg = "no enabled habits could be found for that date"
         }
         this.formValuesLoaded = true;
       },
       error: (error: HttpErrorResponse) => {
         if (error.status === 404) {
-          // no data for this date
+          this.errorMsg = "no habits could be found for that date"
         } else {
-          // unexpected error
+          this.errorMsg = "something went wrong unexpectedly :(";
         }
         this.formValuesLoaded = true;
       }
@@ -101,12 +104,15 @@ export class HabitFormComponent implements OnInit {
   }
 
   handleDateSelect(event: MatDatepickerInputEvent<Date>): void {
+    console.log(event.value);
     if (event.value) {
       const dateString = this.habitService.getDateString(event.value);
       this.getFormValues(dateString);
     } else {
       // we need to shut down the whole form if the value is invalid
       // we will do this by making the array empty and adding an error message
+      this.formValues = [];
+      this.errorMsg = "you must enter a valid date"
     }
   }
 
@@ -136,6 +142,11 @@ export class HabitFormComponent implements OnInit {
             if (requests === 0) {
               this.formValuesLoaded = true;
             }
+          },
+          error: (error: HttpErrorResponse) => {
+            this.errorMsg = "something went wrong unexpectedly :(";
+            this.formValues = [];
+            this.formValuesLoaded = true;
           }
         })
       }
@@ -149,6 +160,11 @@ export class HabitFormComponent implements OnInit {
       this.habitService.setValue(this.formValues[index].name, dateString, false).subscribe({
         next: () => {
           this.formValues[index].value = 0;
+          this.formValuesLoaded = true;
+        },
+        error: (error: HttpErrorResponse) => {
+          this.errorMsg = "something went wrong unexpectedly :(";
+          this.formValues = [];
           this.formValuesLoaded = true;
         }
       })
@@ -171,6 +187,11 @@ export class HabitFormComponent implements OnInit {
             if (requests === 0) {
               this.formValuesLoaded = true;
             }
+          },
+          error: (error: HttpErrorResponse) => {
+            this.errorMsg = "something went wrong unexpectedly :(";
+            this.formValues = [];
+            this.formValuesLoaded = true;
           }
         })
       }

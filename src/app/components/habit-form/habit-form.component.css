@@ -141,3 +141,31 @@ h1, p {
     width: 100%;
     height: 600px;
 }
+
+#error-message {
+    color: crimson;
+    font-size: 1.5em;
+    margin: 0 !important;
+}
+
+#error-message-holder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 1.5em;
+}
+
+#error-icon-holder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 3em;
+}
+
+#error-icon {
+    height: 1em;
+    width: 1em;
+    font-size: 3em;
+}

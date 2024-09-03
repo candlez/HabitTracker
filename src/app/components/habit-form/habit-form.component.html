@@ -32,6 +32,14 @@
             </div>
         </div>
         <ng-container *ngIf="formValuesLoaded; else spinner">
+            <ng-container *ngIf="errorMsg">
+                <div id="error-icon-holder">
+                    <mat-icon color="warn" id="error-icon">error_outline</mat-icon>
+                </div>
+                <div id="error-message-holder">
+                    <p id="error-message">{{errorMsg}}</p>
+                </div>
+            </ng-container>
             <ng-container *ngFor="let habit of formValues; let i = index">
                 <ng-container [ngSwitch]="habit.value">
                     <!-- testing case -->
@@ -91,7 +99,7 @@
                     </div>
                 </ng-container>
             </ng-container>
-            <div id="plus-holder">
+            <div id="plus-holder" *ngIf="!errorMsg || errorMsg === 'you have no habits!'">
                 <button mat-fab color="primary" id="plus-button" routerLink="/habits/create">
                     <mat-icon>add</mat-icon>
                 </button>
@@ -112,10 +120,12 @@
         <button 
             mat-flat-button color="primary" class="bottom-button" id="disable-button"
             *ngIf="toggleController.value === 'backfill'" (click)="handleDisable()"
+            [disabled]="errorMsg"
         >disable</button>
     </div>
     <button 
         mat-flat-button color="primary" class="bottom-button" (click)="handleSubmit()"
+        [disabled]="errorMsg"
     >submit</button>
 </div>
 
