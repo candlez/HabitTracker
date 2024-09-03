@@ -11,6 +11,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 import { HabitService, Habit, HabitDate } from '../../services/habit.service';
 
@@ -20,7 +21,7 @@ import { HabitService, Habit, HabitDate } from '../../services/habit.service';
   imports: [
     MatDatepickerModule, MatButtonToggleModule, ReactiveFormsModule, FormsModule, MatInputModule,
     MatFormFieldModule, NgIf, NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault, MatCheckboxModule,
-    MatButtonModule, RouterLink
+    MatButtonModule, RouterLink, MatIconModule
   ],
   providers: [provideNativeDateAdapter()],
   templateUrl: './habit-form.component.html',
