@@ -143,6 +143,7 @@ h1, p {
 }
 
 #error-message {
+    font-family: "Mulish", sans-serif;
     color: crimson;
     font-size: 1.5em;
     margin: 0 !important;
