@@ -1,0 +1,69 @@
+#create-form-wrapper {
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#create-form-header {
+    font-family: "Mulish", sans-serif;
+    border-width: 1px;
+    border-color: black;
+    border-bottom-style: solid;
+    padding-bottom: 5px;
+    padding-top: 10px;
+}
+
+#title, #description {
+    margin: 0;
+    margin-left: 5px;
+}
+
+.form-item {
+    margin-left: 5px;
+}
+
+#form {
+    width: 100%;
+}
+
+#description-input {
+    width: 100%;
+    height: 150px;
+}
+
+.form-item-text {
+    font-family: "Mulish", sans-serif;
+    margin: 0;
+    margin-left: 10px;
+    margin-top: 10px;
+    font-size: 1.25em;
+}
+
+#slide-toggle {
+    display: inline-block;
+}
+
+textarea {
+    resize: none;
+}
+
+#enabled {
+    display: flex;
+    align-items: flex-start;
+}
+
+#submit-button {
+    border-radius: 20px;
+    height: 2em;
+    font-size: 1.25em;
+}
+
+#button-holder {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 10px;
+    border-top-style: solid;
+    border-color: black;
+    border-width: 1px;
+}

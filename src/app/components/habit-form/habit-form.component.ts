@@ -104,7 +104,6 @@ export class HabitFormComponent implements OnInit {
   }
 
   handleDateSelect(event: MatDatepickerInputEvent<Date>): void {
-    console.log(event.value);
     if (event.value) {
       const dateString = this.habitService.getDateString(event.value);
       this.getFormValues(dateString);

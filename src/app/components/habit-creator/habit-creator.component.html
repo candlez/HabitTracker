@@ -1,1 +1,33 @@
-<p>habit-creator works!</p>
+<div id="create-form-wrapper">
+    <div id="create-form-header">
+        <h1 id="title">Habit Creator</h1>
+        <p id="description">Create a new habit with the form below</p>
+    </div>
+    <form (ngSubmit)="handleSubmit()" id="form" [formGroup]="form">
+        <p class="form-item-text">name:</p>
+        <mat-form-field 
+            appearance="outline" class="form-item" id="name-input" subscriptSizing="dynamic"
+        >
+            <input matInput type="text" formControlName="name">
+        </mat-form-field>
+        <p class="form-item-text">description:</p>
+        <mat-form-field 
+            appearance="outline" class="form-item" id="description-input" subscriptSizing="dynamic"
+        >
+            <textarea matInput type="text" formControlName="description"></textarea>
+        </mat-form-field>
+        <p class="form-item-text" id="enabled">
+            enabled:
+            <mat-slide-toggle 
+                [checked]="true" class="form-item" id="slide-toggle" formControlName="enabled"
+            ></mat-slide-toggle>
+        </p>
+        <div id="button-holder">
+            <button 
+                mat-flat-button color="accent" id="submit-button"
+                [disabled]="false" class="form-item"
+            >submit</button> 
+        </div>
+       
+    </form>
+</div>
