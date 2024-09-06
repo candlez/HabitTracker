@@ -67,3 +67,27 @@ textarea {
     border-color: black;
     border-width: 1px;
 }
+
+#error-message-holder {
+    display: grid;
+    grid-template-rows: 3em 1.5em;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+}
+
+#error-message-text {
+    font-family: "Mulish", sans-serif;
+    color: crimson;
+    font-size: 1.5em;
+    text-align: center;
+    margin: 0;
+}
+
+#error-icon {
+    height: 1em;
+    width: 1em;
+    font-size: 3em;
+    justify-self: center;
+    align-self: center;
+}

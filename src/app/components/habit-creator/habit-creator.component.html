@@ -3,6 +3,10 @@
         <h1 id="title">Habit Creator</h1>
         <p id="description">Create a new habit with the form below</p>
     </div>
+    <div id="error-message-holder" *ngIf="errMsg">
+        <mat-icon color="warn" id="error-icon">error_outline</mat-icon>
+        <p id="error-message-text">{{this.errMsg}}</p>
+    </div>
     <form (ngSubmit)="handleSubmit()" id="form" [formGroup]="form">
         <p class="form-item-text">name:</p>
         <mat-form-field 
