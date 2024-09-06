@@ -48,13 +48,9 @@ export class HabitCreatorComponent {
         },
         error: (error: HttpErrorResponse) => {
           if (error.status === 405) {
-            this.errMsg = "habit cannot be named 'date'";
-          } else if (error.status === 404) {
             this.errMsg = "you must specify a name";
-          } else if (error.status === 409) {
-            this.errMsg = "that name is already taken";
-          }else {
-            this.errMsg = error.message;
+          } else {
+            this.errMsg = error.error;
           }
         }
       })
