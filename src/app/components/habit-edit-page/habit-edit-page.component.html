@@ -10,18 +10,20 @@
             >create new</button>
         </div>
         <ng-container *ngIf="habitsLoaded">
-            <ng-container *ngFor="let habit of habits">
+            <ng-container *ngFor="let habit of habits; let index = index">
                 <div [ngClass]="{'disabled': !habit.enabled}" class="editor-item">
                     <div class="editor-grid">
                         <p class="item-name">{{habit.name}}</p>
-                        <button mat-icon-button class="enable-button">
+                        <button 
+                            mat-icon-button class="enable-button" (click)="toggleEnabled(index)"
+                        >
                             <mat-icon *ngIf="habit.enabled; else disabled">pause</mat-icon>
                         </button>
                         <button mat-icon-button id="edit-button">
                             <mat-icon>edit</mat-icon>
                         </button>
                         <button mat-icon-button id="delete-button">
-                            <!-- clicking this will create a dialog to ensure that the user really wants to -->
+                            <!-- clicking this will create a dialog -->
                             <mat-icon color="warn">delete</mat-icon>
                         </button>
                     </div>

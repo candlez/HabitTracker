@@ -45,4 +45,13 @@ export class HabitEditPageComponent implements OnInit {
       }
     });
   }
+
+  toggleEnabled(index: number) {
+    const habit = this.habits[index]
+    this.habitService.editHabit(habit.name, undefined, undefined, !habit.enabled).subscribe({
+      next: () => {
+        this.habits[index].enabled = !habit.enabled;
+      }
+    })
+  }
 }
