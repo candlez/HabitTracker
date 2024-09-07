@@ -18,7 +18,7 @@
     padding-bottom: 5px;
     padding-top: 10px;
     display: grid;
-    grid-template-columns: 1fr 175px;
+    grid-template-columns: 1fr 200px;
 }
 
 #title, #description {
@@ -70,11 +70,13 @@
 }
 
 #create-button {
-    border-radius: 20px;
     justify-self: center;
     align-self: center;
     font-size: 1.25em;
     border-style: solid;
     border-width: 1px;
-    height: 2em;
+}
+
+#create-button-icon {
+    font-size: 1.25em;
 }
