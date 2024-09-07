@@ -19,7 +19,7 @@
                         >
                             <mat-icon *ngIf="habit.enabled; else disabled">pause</mat-icon>
                         </button>
-                        <button mat-icon-button id="edit-button">
+                        <button mat-icon-button id="edit-button" routerLink="/habits/edit/{{habit.name}}">
                             <mat-icon>edit</mat-icon>
                         </button>
                         <button mat-icon-button id="delete-button">
