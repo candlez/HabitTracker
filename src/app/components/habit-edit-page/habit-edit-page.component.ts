@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 
 import { HabitService, Habit } from '../../services/habit.service';
+import { CreatorRedirectService } from '../../services/creator-redirect.service';
 
 @Component({
   selector: 'app-habit-edit-page',
@@ -20,24 +21,26 @@ export class HabitEditPageComponent implements OnInit {
 
   errMsg: string | undefined = undefined;
 
-  constructor(public habitService: HabitService) {
+  constructor(public habitService: HabitService, public redirect: CreatorRedirectService) {
 
   }
 
   ngOnInit(): void {
-      this.habitService.getHabits().subscribe({
-        next: (values: Habit[]) => {
-          this.habits = values;
-          this.habitsLoaded = true;
-        },
-        error: (error: HttpErrorResponse) => {
-          this.habitsLoaded = true;
-          if (error.status === 404) {
+    this.redirect.setURL("/habits/edit")
 
-          } else {
+    this.habitService.getHabits().subscribe({
+      next: (values: Habit[]) => {
+        this.habits = values;
+        this.habitsLoaded = true;
+      },
+      error: (error: HttpErrorResponse) => {
+        this.habitsLoaded = true;
+        if (error.status === 404) {
 
-          }
+        } else {
+
         }
-      });
+      }
+    });
   }
 }

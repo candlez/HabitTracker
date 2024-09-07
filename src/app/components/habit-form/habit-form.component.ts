@@ -16,6 +16,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 import { HabitService, Habit, HabitDate } from '../../services/habit.service';
+import { CreatorRedirectService } from '../../services/creator-redirect.service';
 
 @Component({
   selector: 'app-habit-form',
@@ -43,11 +44,12 @@ export class HabitFormComponent implements OnInit {
 
   errorMsg: string | null = null;
 
-  constructor(public habitService: HabitService) {
+  constructor(public habitService: HabitService, public redirect: CreatorRedirectService) {
 
   }
 
   ngOnInit(): void {
+    this.redirect.setURL("/habits/form");
     this.today = this.habitService.getDateString(new Date());
 
     this.habitService.getHabits().subscribe({

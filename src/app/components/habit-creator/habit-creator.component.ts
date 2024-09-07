@@ -11,6 +11,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatIconModule } from '@angular/material/icon';
 
 import { HabitService } from '../../services/habit.service';
+import { CreatorRedirectService } from '../../services/creator-redirect.service';
 
 @Component({
   selector: 'app-habit-creator',
@@ -31,10 +32,18 @@ export class HabitCreatorComponent {
 
   errMsg: string | undefined = undefined;
 
-  constructor(public habitService: HabitService, public router: Router) {
+  constructor(
+    public habitService: HabitService, 
+    public router: Router,
+    public redirect: CreatorRedirectService
+  ) {
 
   }
 
+  goBack(): void {
+    const url = this.redirect.getURL();
+    this.router.navigateByUrl(url ? url : "/habits/form");
+  }
 
   handleSubmit(): void {
     if (this.form.valid) {
@@ -44,7 +53,7 @@ export class HabitCreatorComponent {
         this.form.get("enabled")?.value
       ).subscribe({
         next: () => {
-          this.router.navigateByUrl("/habits/form");
+          this.goBack();
         },
         error: (error: HttpErrorResponse) => {
           if (error.status === 405) {
