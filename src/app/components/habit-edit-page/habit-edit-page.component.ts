@@ -7,15 +7,7 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
-import {
-  MatDialog,
-  MAT_DIALOG_DATA,
-  MatDialogRef,
-  MatDialogTitle,
-  MatDialogContent,
-  MatDialogActions,
-  MatDialogClose,
-} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 
 import { HabitService, Habit } from '../../services/habit.service';
 import { CreatorRedirectService } from '../../services/creator-redirect.service';

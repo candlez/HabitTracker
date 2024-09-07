@@ -56,7 +56,7 @@ export class HabitCreatorComponent {
           this.goBack();
         },
         error: (error: HttpErrorResponse) => {
-          if (error.status === 405) {
+          if (error.status === 404) {
             this.errMsg = "you must specify a name";
           } else {
             this.errMsg = error.error;
