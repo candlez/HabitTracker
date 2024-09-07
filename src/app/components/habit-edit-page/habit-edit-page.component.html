@@ -1,8 +1,13 @@
 <div id="editor-scroll">
     <div id="editor-wrapper">
         <div id="editor-header">
-            <h1 id="title">Habit Editor</h1>
-            <p id="description">Edit your habits with the form below</p>
+            <div>
+                <h1 id="title">Habit Editor</h1>
+                <p id="description">Edit your habits with the form below</p>
+            </div>
+            <button 
+                mat-flat-button color="primary" id="create-button" routerLink="/habits/create"
+            >create new</button>
         </div>
         <ng-container *ngIf="habitsLoaded">
             <ng-container *ngFor="let habit of habits">

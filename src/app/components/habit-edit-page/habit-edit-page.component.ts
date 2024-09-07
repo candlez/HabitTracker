@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgIf, NgFor, NgClass } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -8,10 +9,11 @@ import { MatIcon } from '@angular/material/icon';
 import { HabitService, Habit } from '../../services/habit.service';
 import { CreatorRedirectService } from '../../services/creator-redirect.service';
 
+
 @Component({
   selector: 'app-habit-edit-page',
   standalone: true,
-  imports: [NgIf, NgFor, NgClass, MatButtonModule, MatIcon],
+  imports: [NgIf, NgFor, NgClass, MatButtonModule, MatIcon, RouterLink],
   templateUrl: './habit-edit-page.component.html',
   styleUrl: './habit-edit-page.component.css'
 })
@@ -26,7 +28,7 @@ export class HabitEditPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.redirect.setURL("/habits/edit")
+    this.redirect.setURL("/habits/edit");
 
     this.habitService.getHabits().subscribe({
       next: (values: Habit[]) => {
