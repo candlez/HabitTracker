@@ -1,1 +1,33 @@
-<p>habit-edit-page works!</p>
+<div id="editor-scroll">
+    <div id="editor-wrapper">
+        <div id="editor-header">
+            <h1 id="title">Habit Editor</h1>
+            <p id="description">Edit your habits with the form below</p>
+        </div>
+        <ng-container *ngIf="habitsLoaded">
+            <ng-container *ngFor="let habit of habits">
+                <div [ngClass]="{'disabled': !habit.enabled}" class="editor-item">
+                    <div class="editor-grid">
+                        <p class="item-name">{{habit.name}}</p>
+                        <button mat-icon-button class="enable-button">
+                            <mat-icon *ngIf="habit.enabled; else disabled">pause</mat-icon>
+                        </button>
+                        <button mat-icon-button id="edit-button">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button id="delete-button">
+                            <!-- clicking this will create a dialog to ensure that the user really wants to -->
+                            <mat-icon color="warn">delete</mat-icon>
+                        </button>
+                    </div>
+                    <p class="item-description">{{habit.description}}</p>
+                </div>
+    
+                <ng-template #disabled>
+                    <mat-icon>play_arrow</mat-icon>
+                </ng-template>
+            </ng-container>
+        </ng-container>
+        <div id="bottom-spacer"></div>
+    </div>    
+</div>
