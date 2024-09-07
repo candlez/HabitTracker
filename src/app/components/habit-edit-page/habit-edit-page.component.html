@@ -22,7 +22,7 @@
                         <button mat-icon-button id="edit-button" routerLink="/habits/edit/{{habit.name}}">
                             <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-icon-button id="delete-button">
+                        <button mat-icon-button id="delete-button" (click)="openDeleteDialog(index)">
                             <!-- clicking this will create a dialog -->
                             <mat-icon color="warn">delete</mat-icon>
                         </button>

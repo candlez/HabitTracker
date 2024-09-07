@@ -3,8 +3,19 @@ import { NgIf, NgFor, NgClass } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
+import {
+  MatDialog,
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialogTitle,
+  MatDialogContent,
+  MatDialogActions,
+  MatDialogClose,
+} from '@angular/material/dialog';
 
 import { HabitService, Habit } from '../../services/habit.service';
 import { CreatorRedirectService } from '../../services/creator-redirect.service';
@@ -23,7 +34,11 @@ export class HabitEditPageComponent implements OnInit {
 
   errMsg: string | undefined = undefined;
 
-  constructor(public habitService: HabitService, public redirect: CreatorRedirectService) {
+  constructor(
+    public habitService: HabitService, 
+    public redirect: CreatorRedirectService,
+    public dialog: MatDialog
+  ) {
 
   }
 
@@ -53,5 +68,20 @@ export class HabitEditPageComponent implements OnInit {
         this.habits[index].enabled = !habit.enabled;
       }
     })
+  }
+
+  openDeleteDialog(index: number) {
+    const habit = this.habits[index];
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {data: {habit}});
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.habitService.deleteHabit(habit.name).subscribe({
+          next: () => {
+            this.habits.splice(index, 1);
+          }
+        })
+      }
+    });
   }
 }

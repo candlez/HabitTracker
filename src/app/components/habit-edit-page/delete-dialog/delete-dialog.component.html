@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>Wait!!</h2>
+<mat-dialog-content>
+    <p>Are you sure you want to delete '{{data.habit.name}}'?</p>
+    <p>This action cannot be undone and your data will not be recoverable.</p>
+</mat-dialog-content>
+<mat-dialog-actions id="actions-holder">
+    <button mat-flat-button (click)="dialogRef.close()" cdkFocusInitial>Cancel</button>
+    <button 
+        mat-flat-button color="warn" [mat-dialog-close]="true"
+    >Yes, delete '{{data.habit.name}}'</button>
+</mat-dialog-actions>
