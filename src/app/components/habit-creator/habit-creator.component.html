@@ -1,7 +1,12 @@
 <div id="create-form-wrapper">
     <div id="create-form-header">
-        <h1 id="title">Habit Creator</h1>
-        <p id="description">Create a new habit with the form below</p>
+        <div>
+            <h1 id="title">Habit Creator</h1>
+            <p id="description">Create a new habit with the form below</p>
+        </div>
+        <button mat-flat-button color="accent" (click)="goBack()" id="back-button">
+            <mat-icon>arrow_back_ios</mat-icon> back
+        </button>
     </div>
     <div id="error-message-holder" *ngIf="errMsg">
         <mat-icon color="warn" id="error-icon">error_outline</mat-icon>
