@@ -53,7 +53,7 @@ export class HabitEditPageComponent implements OnInit {
     });
   }
 
-  toggleEnabled(index: number) {
+  toggleEnabled(index: number): void {
     const habit = this.habits[index]
     this.habitService.editHabit(habit.name, undefined, undefined, !habit.enabled).subscribe({
       next: () => {
@@ -62,7 +62,7 @@ export class HabitEditPageComponent implements OnInit {
     })
   }
 
-  openDeleteDialog(index: number) {
+  openDeleteDialog(index: number): void {
     const habit = this.habits[index];
     const dialogRef = this.dialog.open(DeleteDialogComponent, {data: {habit}});
 

@@ -18,7 +18,7 @@
     padding-bottom: 5px;
     padding-top: 10px;
     display: grid;
-    grid-template-columns: 1fr 200px;
+    grid-template-columns: 1fr 110px 200px;
 }
 
 #title, #description {
@@ -78,5 +78,18 @@
 }
 
 #create-button-icon {
+    margin-right: 2px;
+}
+
+#done-button {
+    justify-self: center;
+    align-self: center;
     font-size: 1.25em;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+}
+
+#done-button-icon {
+    margin-right: 2px;
 }

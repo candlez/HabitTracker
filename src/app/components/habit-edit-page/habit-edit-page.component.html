@@ -6,8 +6,12 @@
                 <p id="description">Edit your habits with the form below</p>
             </div>
             <button 
+                mat-fab extended color="accent" id="done-button" routerLink="/habits/form"
+            ><mat-icon id="done-button-icon">chevron_left</mat-icon>Done</button>
+            <button 
                 mat-fab extended color="primary" id="create-button" routerLink="/habits/create"
             ><mat-icon id="create-button-icon">add</mat-icon> Create New</button>
+
         </div>
         <ng-container *ngIf="habitsLoaded">
             <ng-container *ngFor="let habit of habits; let index = index">
