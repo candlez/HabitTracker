@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    API_BASE_URL: "http://localhost:8393"
+    API_BASE_URL: "https://mustach.co/api"
 }
